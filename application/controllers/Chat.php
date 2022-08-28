@@ -51,7 +51,7 @@ class Chat extends CI_Controller {
             foreach ($data as $val) {
                 $msg= $val->message;
                 print_r($val);
-                $msg=array('msgid'=>$val->messageId)
+                $msg=array('msgid'=>$val->messageId,'fromnumber'=>$val->from);
             }
         }
 	}
