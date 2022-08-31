@@ -8,15 +8,15 @@ class Chat extends CI_Controller {
         if(get_cookie("walogin")==""){
             redirect('auth/login');
         }
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
-		$dotenv->load();
+  //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
+		// $dotenv->load();
 		
 		$_GET['userdata']=json_decode(base64_decode(get_cookie("walogin")));
     }
 	public function index()
 	{	
 		$listUser=$this->M_chat->getList($_GET['userdata']->nik);
-		$this->load->view('chat',['data'=>json_decode(base64_decode(get_cookie("walogin"))),'listuser'=>$listUser,'company'=>$_ENV['COMPANY']]);
+		$this->load->view('chat',['data'=>json_decode(base64_decode(get_cookie("walogin"))),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
 	}
 	public function detail()
 	{
@@ -78,7 +78,7 @@ class Chat extends CI_Controller {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'inboundmsg',
+		CURLOPT_URL => getenv('BASEURL_SOCKETIO').'inboundmsg',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -100,7 +100,7 @@ class Chat extends CI_Controller {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'broadcast',
+			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'broadcast',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -123,7 +123,7 @@ class Chat extends CI_Controller {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		    CURLOPT_URL => $_ENV['BASEURL'].'/whatsapp/1/message/text',
+		    CURLOPT_URL => getenv('BASEURL').'/whatsapp/1/message/text',
 		    CURLOPT_RETURNTRANSFER => true,
 		    CURLOPT_ENCODING => '',
 		    CURLOPT_MAXREDIRS => 10,
@@ -131,9 +131,9 @@ class Chat extends CI_Controller {
 		    CURLOPT_FOLLOWLOCATION => true,
 		    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		    CURLOPT_CUSTOMREQUEST => 'POST',
-		    CURLOPT_POSTFIELDS =>'{"from":"'.$_ENV['SENDER'].'","to":"'.$from.'","messageId":"'.$id.'","content":{"text":"'.$text.'"}}',
+		    CURLOPT_POSTFIELDS =>'{"from":"'.getenv('SENDER').'","to":"'.$from.'","messageId":"'.$id.'","content":{"text":"'.$text.'"}}',
 		    CURLOPT_HTTPHEADER => array(
-		        'Authorization: Basic '.base64_encode($_ENV['UINFOBIP'].':'.$_ENV['PINFOBIP']),
+		        'Authorization: Basic '.base64_encode(getenv('UINFOBIP').':'.getenv('PINFOBIP')),
 		        'Content-Type: application/json',
 		        'Accept: application/json'
 		    ),
