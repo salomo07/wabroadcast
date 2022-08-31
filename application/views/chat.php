@@ -22,8 +22,7 @@
         <link href="assets/css/skin-modes.css" rel="stylesheet" />
         <link href="assets/css/icons.css" rel="stylesheet" />
         <link id="theme" rel="stylesheet" type="text/css" media="all" href="assets/colors/color1.css" />
-        <link href="assets/switcher/css/switcher.css" rel="stylesheet" />
-        <link href="assets/switcher/demo.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="assets/css/toastr.css">
     </head>
 
     <body class="app sidebar-mini ltr light-mode">
@@ -280,15 +279,6 @@
                                                             <p>Good Morning</p>
                                                         </div>
                                                     </div>
-                                                    <div class="media new" value="6281288643757">
-                                                        <div class="main-img-user"><img alt="" src="assets/images/users/6.jpg"></div>
-                                                        <div class="media-body">
-                                                            <div class="media-contact-name">
-                                                                <span>Samuel Lerin</span> <span>29/07/2021</span>
-                                                            </div>
-                                                            <p> Hey! there I'm available </p>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <!-- main-chat-list -->
                                             </div>
@@ -304,6 +294,8 @@
                                 <div id="chatarea" class="main-content-body main-content-body-chat h-100">
                                     <div class="main-chat-header pt-3 d-block d-sm-flex" >
                                         <div class="main-img-user online"><img alt="avatar" src="assets/images/users/1.png"></div>
+                                        <input type="hidden" id="notelp">
+                                        <input type="hidden" id="nonik" value="<?php echo $data->nik ?>">
                                         <div class="main-chat-msg-name mt-2">
                                             <h6>Sahabat Adira</h6>
                                         </div>
@@ -317,10 +309,7 @@
                                             <div class="dropdown">
                                                 <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-phone-call me-1"></i> Phone Call</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-video me-1"></i> Video Call</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-user-plus me-1"></i> Add Contact</a>
-                                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-trash-2 me-1"></i> Delete</a>
+                                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-trash-2 me-1"></i> Close Conversation</a>
                                                 </div>
                                             </div>
                                         </nav>
@@ -330,8 +319,8 @@
                                         </div>
                                     </div>
                                     <div class="main-chat-footer" style="height: 20%;">
-                                        <textarea class="form-control" rows="5" placeholder="Type your message here..." type="text" style="height: 80px; margin-bottom: 5px;margin-top: 5px;"></textarea>
-                                        <button type="button" class="btn btn-icon  btn-primary brround"><i class="fa fa-paper-plane-o"></i></button>
+                                        <textarea id="txtMsg" class="form-control" rows="5" placeholder="Type your message here..." type="text" style="height: 80px; margin-bottom: 5px;margin-top: 5px;"></textarea>
+                                        <button id="btnSend" onclick="sendChat()" type="button" class="btn btn-icon  btn-primary brround"><i class="fa fa-paper-plane-o"></i></button>
                                         <nav class="nav">
                                         </nav>
                                     </div>
@@ -759,88 +748,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="country-selector">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content country-select-modal">
-                    <div class="modal-header">
-                        <h6 class="modal-title">Choose Country</h6><button aria-label="Close" class="btn-close"
-                            data-bs-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="row p-3">
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block active">
-                                    <span class="country-selector"><img alt="" src="assets/images/flags/us_flag.jpg"
-                                            class="me-3 language"></span>USA
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags/italy_flag.jpg"
-                                        class="me-3 language"></span>Italy
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags/spain_flag.jpg"
-                                        class="me-3 language"></span>Spain
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags/india_flag.jpg"
-                                        class="me-3 language"></span>India
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags/french_flag.jpg"
-                                        class="me-3 language"></span>French
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags/russia_flag.jpg"
-                                        class="me-3 language"></span>Russia
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags/germany_flag.jpg"
-                                        class="me-3 language"></span>Germany
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt=""
-                                        src="assets/images/flags/argentina.jpg"
-                                        class="me-3 language"></span>Argentina
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt="" src="assets/images/flags/malaysia.jpg"
-                                        class="me-3 language"></span>Malaysia
-                                </a>
-                            </li>
-                            <li class="col-lg-6 mb-2">
-                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
-                                    <span class="country-selector"><img alt="" src="assets/images/flags/turkey.jpg"
-                                        class="me-3 language"></span>Turkey
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
             
         <footer class="footer">
             <div class="container">
@@ -881,13 +788,15 @@
         <script src="assets/switcher/js/switcher.js"></script>
         <script src="assets/socketio/socket.io.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha512-HaoDYc3PGduguBWOSToNc0AWGHBi2Y432Ssp3wNIdlOzrunCtB2qq6FrhtPbo+PlbvRbyi86dr5VQx61eg/daQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="assets/js/toastr.min.js"></script>
     </body>
     <div id="msgright" style="display: none;" class="media flex-row-reverse chat-right">
       <div class="main-img-user online">
-        <img alt="avatar" src="assets/images/users/21.jpg">
+        <img alt="avatar" src="assets/images/users/6.jpg">
       </div>
       <div class="media-body">
-        <div class="main-msg-wrapper" style="background-color:aliceblue;"> Nulla consequat massa quis enim. Donec pede justo, fringilla vel... </div>
+        <div class="main-msg-wrapper" style="background-color: aliceblue;"> Nulla consequat massa quis enim. Donec pede justo, fringilla vel... </div>
+        <div>
           <span>9:48 am</span>
           <a href="javascript:void(0)">
             <i class="icon ion-android-more-horizontal"></i>
@@ -895,23 +804,98 @@
         </div>
       </div>
     </div>
+    <div id="msgleft" style="display: none;" class="media chat-left">
+        <div class="main-img-user online">
+            <img alt="avatar" src="assets/images/users/1.png">
+        </div>
+        <div class="media-body">
+            <div class="main-msg-wrapper" style="background-color: gray"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </div>
+            <div>
+              <span>9:32 am</span>
+              <a href="javascript:void(0)">
+                <i class="icon ion-android-more-horizontal"></i>
+              </a>
+            </div>
+        </div>
+    </div>
 </html>
 
 <script type="text/javascript">
-    var socket = io("ws://localhost:3000");;
-    var cleanChat=(name)=>{
-        $('#chatarea').find('.main-chat-msg-name').find('h6').text(name)
-        $('#chatarea').find('.content-inner').html('<center>Loading...<center>');        
+    var socket = io("ws://<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
+    socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+        toastr.error("Fail to connect socketio, check your connection",'Offline');
+    });
+    socket.on('reconnect', ()=>{
+        toastr.success("Successfully reconnect",'Online');
+    });
+
+    var cleanChat=(ele)=>{
+        $('#notelp').val($(ele).attr('value'));
+        $('#chatarea').find('.main-chat-msg-name').find('h6').text($(ele).find('.media-contact-name').find('span').eq(0).text())
+        $('#chatarea').find('.content-inner').html('<center>Loading...<center>');
+        $('.main-content-body').show();   
+        getDetailChat($(ele).attr('value'));
+        $(".media.new").css('background-color','white');
+        $(ele).css('background-color','aliceblue');
+        $(ele).find('.main-img-user > span').text(0);
+        $(ele).find('.main-img-user > span').hide();
     }
-    
+    var sendChat=()=>{
+        console.log('sending')
+        var msgLeft=$('#msgleft').clone();
+        $(msgLeft).find('.main-msg-wrapper').text($('#txtMsg').val());
+        $(msgLeft).find('.main-msg-wrapper').next().find('span').text('sending...');
+        $(msgLeft).removeAttr('id');msgLeft.show();
+        $('.content-inner').append($(msgLeft).clone())
+        $.ajax({
+            url: "chat/saveOutboundMsg",
+            dataType:"json",
+            method:"POST",
+            "data": JSON.stringify({"from":$('#notelp').val(),"nik":$('#nonik').val(),"text":$('#txtMsg').val()}), 
+            success: function(res){
+               console.log(res);
+               $('.content-inner').find('.media.chat-left').last().find('.main-msg-wrapper').next().find('span').text(res.time);
+               $('#txtMsg').val('');
+            }
+        });
+    }
     var getDetailChat=(no)=>{
+        var xxx=[];
+        var msgRight=$('#msgright').clone();
+        var msgLeft=$('#msgleft').clone();
+        
+        msgRight.show();
+        msgLeft.show();
+        $('#ChatBody').find('.content-inner').html('<center>Loading...</center>')
         $.ajax({
             url: "chat/detail?from="+no+"&nik="+<?php echo $data->nik ?>,
             dataType:"json", 
             success: function(res){
-                console.log(res);
-                $('#ChatBody').find('.content-inner').html('');
-                if(res.length==0){$('#chatarea').find('.content-inner').html('<center><h2>No Conversation</h2></center>')}
+               ;
+                if(res.length==0){
+                    $('#chatarea').find('.content-inner').html('<center><h2>No Conversation</h2></center>');
+                }
+                else{
+                    
+                    $('#ChatBody').find('.content-inner').html('');
+                    res.map((val,i)=>{
+
+                        if(val.statusio=='Out'){
+                            $(msgLeft).find('.main-msg-wrapper').text(val.text);
+                            $(msgLeft).find('.main-msg-wrapper').next().find('span').text(val.time);
+                            $(msgLeft).removeAttr('id');
+                            xxx.push(msgLeft.clone());
+                        }else if (val.statusio=='In'){
+                            console.log("Data :",val);
+                            $(msgRight).find('.main-msg-wrapper').text(val.text);
+                            $(msgRight).find('.main-msg-wrapper').next().find('span').text(val.time);
+                            $(msgRight).removeAttr('id');
+                            xxx.push(msgRight.clone());
+                        }
+                    });
+                    $('#ChatBody').find('.content-inner').html(xxx)
+                }
             }
         });
     }
@@ -922,13 +906,14 @@
 
         var xxx=[];
         list.forEach((val,i)=>{
+            console.log(val)
             var usr=usrx;
             $(usr).attr('value',val.fromnumber);
             $(usr).find('.media-contact-name').find('span').eq(0).text(val.contactname==''?'Sahabat Adira':val.contactname);
             $(usr).find('.media-contact-name').find('span').eq(1).text(val.time);
             $(usr).find('.main-img-user > span').text(val.unread);
             if(val.unread==0){
-                $(usr).find('.main-img-user > span').remove();
+                $(usr).find('.main-img-user > span').hide();
             }
             $(usr).find('.media-body').find('p').text(val.text);
             xxx.push($(usr).clone());console.log(val)
@@ -938,22 +923,57 @@
                 incomingMsg(msg)
             })
         });
-        $('#chatList').html(xxx)
+        $('#chatList').html(xxx);
+        $('.main-content-body').hide();
     }
     var incomingMsg=(xxx)=>{
         var msgHTML=$('#msgright').show();
-        $(msgHTML).find('.main-msg-wrapper').text(xxx.text)
+        $(msgHTML).find('.main-msg-wrapper').text(xxx.text);
+        $(msgHTML).find('.media-body').find('span').text(xxx.time);
         $('.content-inner').append($(msgHTML).clone());
         smoothScroll.scrollTo($(''), 500);
     }
-    initChatlist()
+    
     $(function () {
         $(".media.new").on('click',function (){
-            cleanChat($(this).find('.media-contact-name').find('span').eq(0).text())
-            getDetailChat($(this).attr('value'));
-            $(".media.new").css('background-color','white');
-            $(this).css('background-color','aliceblue');
-            $(this).find('.main-img-user > span').remove();
+            console.log("Loading detail chat");
+            cleanChat(this)
         })
     });
+    var receivingBroadcast=()=>{
+        socket.on("broadcast",(msg)=>{
+
+            if($('#chatList').find('.media.new').length==0){
+                addList(msg,0);
+            }else{
+                var exist=$("div[value='" + msg.from + "']");
+                console.log(msg,$("div[value='" + msg.from + "']").length)
+                if($("div[value='" + msg.from + "']").length==1){
+                    $(exist).find('.main-img-user>span').text(parseInt($(exist).find('.main-img-user>span').text())+1)
+                    $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
+                    $(exist).find('.main-img-user > span').show();
+                }
+                else{
+                    addList(msg,0);
+                }
+            }
+        })
+    }
+    var addList=(msg,count)=>{
+        var usr=usrx;
+        var newMsg=count+1;
+        console.log('Pesan broadcast masuk :',msg);
+        $(usr).attr('value',msg.from);
+        $(usr).find('.main-img-user>span').text(count+1)
+        $(usr).find('.media-contact-name').find('span').eq(0).text(msg.contactname==''?'Sahabat Adira':msg.contactname);
+        $(usr).find('.media-contact-name').find('span').eq(1).text(msg.time);
+        $(usr).find('.media-body').find('p').text(msg.text);
+        console.log('add');
+        $('#chatList').append($(usr).clone());
+        $('#chatList').on('click','.media.new',function(){
+            cleanChat(this)
+        })
+    }
+    initChatlist();
+    receivingBroadcast();
 </script>

@@ -10,33 +10,44 @@ class Chat extends CI_Controller {
         }
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		$dotenv->load();
+		
+		$_GET['userdata']=json_decode(base64_decode(get_cookie("walogin")));
     }
 	public function index()
 	{	
-		$userdata=json_decode(base64_decode(get_cookie("walogin")));
-		$listUser=$this->M_chat->getList($userdata->nik);
-		$this->load->view('chat',['data'=>json_decode(base64_decode(get_cookie("walogin"))),'listuser'=>$listUser]);
+		$listUser=$this->M_chat->getList($_GET['userdata']->nik);
+		$this->load->view('chat',['data'=>json_decode(base64_decode(get_cookie("walogin"))),'listuser'=>$listUser,'company'=>$_ENV['COMPANY']]);
 	}
 	public function detail()
 	{
-		$detail=$this->M_chat->getConversation($_GET['nik'],$_GET['from']);
-		echo json_encode($detail);
+		$detail=$this->M_chat->getConversation($_GET['from']);
+		// print_r($detail);
+		$nik=false;
+		foreach ($detail as $key => $val) {
+			if($val->nik == $_GET['userdata']->nik || $val->nik==''){
+				$nik=true;
+			}
+		}
+		echo $nik? json_encode($detail):json_encode(array());
 	}
-	public function insertchat()
+	public function saveOutboundMsg()
 	{	
-		if(isset($_POST['from']) && isset($_POST['nik']) && isset($_POST['type']) && isset($_POST['text'])){
+		$data=json_decode(file_get_contents('php://input'));
+		if(isset($data->from) && isset($data->nik) && isset($data->text)){
 			$id=base64_encode(date('Y-m-d H:i:s.u'));
-			$listUser=array('msgid'=>$id,'fromnumber'=>$_POST['from'],
-				'nik'=>$_POST['nik'],
-				'type'=>$_POST['type'],
-				'text'=>$_POST['text'],
+			$listUser=array('msgid'=>$id,'fromnumber'=>$data->from,
+				'nik'=>$data->nik,
+				'type'=>'TEXT',
+				'text'=>$data->text,
 				'url'=>isset($_POST['url'])?$_POST['url']:'',
-				'contactname'=>isset($_POST['contactname'])?$_POST['contactname']:'',
 				'status'=>'Conversation',
+				'statusio'=>'Out',
 				'time'=>date('Y-m-d H:i:s')
 			);
-			$this->db->insert('tblmsg', $listUser);
-			$this->sendtoclient($id,$_POST['from'],$_POST['text']);
+			
+			$this->M_chat->insertMsg($listUser);
+			$this->sendtoclient($id,$data->from,$data->text);//Via infobip
+			echo json_encode($listUser);
 		}else{
 			echo 'from, nik, type, text must included';
 		}
@@ -45,15 +56,67 @@ class Chat extends CI_Controller {
 	{
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
-            $now=new DateTime('NOW');
-            $now=$now->format('c');
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
-                $msg= $val->message;
-                print_r($val);
-                $msg=array('msgid'=>$val->messageId,'fromnumber'=>$val->from);
+            	if($this->M_chat->checkNewConversation($_GET['userdata']->nik,$val->from)->Count==0)
+            	{
+            		$this->sendtosocketBroadcast(json_encode($data));
+            	}
+            	else{
+    				$this->sendtosocketInbound(json_encode($data));
+            	}
+
+        		$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
+                $url=$val->message->type=="IMAGE"?$val->message->url:'';
+                $name=isset($val->contact->name)?$val->contact->name:'';
+                $msgdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type);
+                $this->M_chat->insertMsg($msgdata);
             }
         }
+	}
+	public function sendtosocketInbound($data){
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'inboundmsg',
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS => 'text=Selamat&from=6281288643757w',
+		CURLOPT_HTTPHEADER => array(
+			'Content-Type: application/x-www-form-urlencoded'
+		),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+	}
+	public function sendtosocketBroadcast($data){
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'broadcast',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS =>$data,
+			CURLOPT_HTTPHEADER => array(
+			'Content-Type: application/json'
+		  ),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
 	}
 	public function sendtoclient($id,$from,$text)
 	{	

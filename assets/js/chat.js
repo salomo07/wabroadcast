@@ -9,10 +9,10 @@ $(function() {
     //     useBothWheelAxes: true,
     //     suppressScrollX: true,
     // });
-    // const ps7 = new PerfectScrollbar('.main-chat-contacts-slider', {
-    //     useBothWheelAxes: true,
-    //     suppressScrollY: true,
-    // });
+    const ps7 = new PerfectScrollbar('.main-chat-contacts-slider', {
+        useBothWheelAxes: true,
+        suppressScrollY: true,
+    });
     // const ps18 = new PerfectScrollbar('.main-chat-2', {
     //     useBothWheelAxes: true,
     //     suppressScrollX: true,
