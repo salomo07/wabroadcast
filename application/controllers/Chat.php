@@ -54,6 +54,7 @@ class Chat extends CI_Controller {
 	}
 	public function cobainboundsocket(){
 		$this->sendtosocketInbound(json_encode(["namaevent"=>"10091062 - 6281288643757",'text'=>"Ini tes aja sih"]));
+		$this->sendtosocketBroadcast(json_encode([,'text'=>"Ini tes aja sih2"]));
 	}
 	
 	public function inboundmsg()
