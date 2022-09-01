@@ -54,6 +54,7 @@ class Chat extends CI_Controller {
 	}
 	public function inboundmsg()
 	{
+		echo 'stringxxxxxxxxxxx';
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
@@ -63,6 +64,7 @@ class Chat extends CI_Controller {
             		$this->sendtosocketBroadcast(json_encode($data));
             	}
             	else{
+            		$data->namaevent=$_GET['userdata']->nik.' - '.$val->from;
     				$this->sendtosocketInbound(json_encode($data));
             	}
 
