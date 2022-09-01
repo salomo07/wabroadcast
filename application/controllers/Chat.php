@@ -10,7 +10,7 @@ class Chat extends CI_Controller {
         }
   //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
-		
+		$_ENV['BASEURL_SOCKETIO']='localhost:3000';
 		$_GET['userdata']=json_decode(base64_decode(get_cookie("walogin")));
     }
 	public function index()
@@ -53,8 +53,8 @@ class Chat extends CI_Controller {
 		}
 	}
 	public function cobainboundsocket(){
-		$this->sendtosocketInbound(json_encode(["namaevent"=>"10091062 - 6281288643757","text"=>"Ini tes aja sih","from"=>"6281288643757"]));
-		$this->sendtosocketBroadcast(json_encode(['text'=>"Ini tes aja sih2","from"=>"6281288643757"]));
+		// $this->sendtosocketInbound(json_encode(["namaevent"=>"10091062 - 6281288643757","text"=>"Ini tes aja sih","from"=>"6281288643757"]));
+		$this->sendtosocketBroadcast(json_encode(["nik"=>"10091062","text"=>"Ini tes aja sih2","from"=>"6281288643757"]));
 	}
 	
 	public function inboundmsg()
@@ -84,8 +84,9 @@ class Chat extends CI_Controller {
 	}
 	public function sendtosocketInbound($data){
 		$curl = curl_init();
+
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'inboundmsg',
+			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'/inboundmsg',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -96,8 +97,9 @@ class Chat extends CI_Controller {
 			CURLOPT_POSTFIELDS =>$data,
 			CURLOPT_HTTPHEADER => array(
 			'Content-Type: application/json'
-		  ),
+			),
 		));
+
 		$response = curl_exec($curl);
 
 		curl_close($curl);

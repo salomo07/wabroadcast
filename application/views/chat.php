@@ -925,12 +925,23 @@
         $('#chatList').html(xxx);
         $('.main-content-body').hide();
     }
-    var incomingMsg=(xxx)=>{
+    var incomingMsg=(msg)=>{
         var msgHTML=$('#msgright').show();
-        $(msgHTML).find('.main-msg-wrapper').text(xxx.text);
-        $(msgHTML).find('.media-body').find('span').text(xxx.time);
+        $(msgHTML).find('.main-msg-wrapper').text(msg.text);
+        $(msgHTML).find('.media-body').find('span').text(msg.time);
         $('.content-inner').append($(msgHTML).clone());
-        smoothScroll.scrollTo($(''), 500);
+
+        var exist=$("div[value='" + msg.from + "']");
+        if($("div[value='" + msg.from + "']").length==1){
+            if($('#notelp').val()!=msg.from)
+            {
+                $(exist).find('.main-img-user>span').text(parseInt($(exist).find('.main-img-user>span').text())+1);
+                $(exist).find('.main-img-user > span').show();
+            }
+            $(exist).find('.media-body > p').text(msg.text)
+            $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
+            
+        }
     }
     
     $(function () {
@@ -948,7 +959,8 @@
                 var exist=$("div[value='" + msg.from + "']");
                 console.log(msg,$("div[value='" + msg.from + "']").length)
                 if($("div[value='" + msg.from + "']").length==1){
-                    $(exist).find('.main-img-user>span').text(parseInt($(exist).find('.main-img-user>span').text())+1)
+                    $(exist).find('.main-img-user>span').text(parseInt($(exist).find('.main-img-user>span').text())+1);
+                    $(exist).find('.media-body > p').text(msg.text)
                     $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
                     $(exist).find('.main-img-user > span').show();
                 }
@@ -961,13 +973,12 @@
     var addList=(msg,count)=>{
         var usr=usrx;
         var newMsg=count+1;
-        console.log('Pesan broadcast masuk :',msg);
+        console.log('addList :',msg);
         $(usr).attr('value',msg.from);
         $(usr).find('.main-img-user>span').text(count+1)
         $(usr).find('.media-contact-name').find('span').eq(0).text(msg.contactname==''?'Sahabat Adira':msg.contactname);
         $(usr).find('.media-contact-name').find('span').eq(1).text(msg.time);
         $(usr).find('.media-body').find('p').text(msg.text);
-        console.log('add');
         $('#chatList').append($(usr).clone());
         $('#chatList').on('click','.media.new',function(){
             cleanChat(this)
