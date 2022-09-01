@@ -821,7 +821,7 @@
 </html>
 
 <script type="text/javascript">
-    var socket = io("ws://<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
+    var socket = io("<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
     socket.on("connect_error", (err) => {
         console.log(`connect_error due to ${err.message}`);
         toastr.error("Fail to connect socketio, check your connection",'Offline');
