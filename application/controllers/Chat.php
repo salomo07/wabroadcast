@@ -5,9 +5,9 @@ class Chat extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        if(get_cookie("walogin")==""){
-            redirect('auth/login');
-        }
+        // if(get_cookie("walogin")==""){
+        //     redirect('auth/login');
+        // }
   //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
 		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
