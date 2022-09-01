@@ -64,7 +64,7 @@ class Chat extends CI_Controller {
             		$this->sendtosocketBroadcast(json_encode($data));
             	}
             	else{
-            		$data->namaevent=$_GET['userdata']->nik.' - '.$val->from;
+            		$data['namaevent']=$_GET['userdata']->nik.' - '.$val->from;
     				$this->sendtosocketInbound(json_encode($data));
             	}
 
