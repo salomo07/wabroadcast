@@ -54,7 +54,7 @@ class Chat extends CI_Controller {
 	}
 	public function inboundmsg()
 	{
-		echo 'stringxxxxxxxxxxx';
+
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
@@ -78,22 +78,20 @@ class Chat extends CI_Controller {
 	}
 	public function sendtosocketInbound($data){
 		$curl = curl_init();
-
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => getenv('BASEURL_SOCKETIO').'inboundmsg',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS => 'text=Selamat&from=6281288643757w',
-		CURLOPT_HTTPHEADER => array(
-			'Content-Type: application/x-www-form-urlencoded'
-		),
+			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'inboundmsg',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS =>$data,
+			CURLOPT_HTTPHEADER => array(
+			'Content-Type: application/json'
+		  ),
 		));
-
 		$response = curl_exec($curl);
 
 		curl_close($curl);
