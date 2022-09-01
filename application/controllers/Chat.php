@@ -5,18 +5,18 @@ class Chat extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        // if(get_cookie("walogin")==""){
-        //     redirect('auth/login');
-        // }
+        if($_SESSION['walogin']==""){
+            redirect('auth/login');
+        }
   //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
 		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
-		$_ENV['userdata']=json_decode(base64_decode(get_cookie("walogin")));
+		$_ENV['userdata']=json_decode(base64_decode($_SESSION['walogin']));
     }
 	public function index()
 	{	
 		$listUser=$this->M_chat->getList($_ENV['userdata']->nik);
-		$this->load->view('chat',['data'=>json_decode(base64_decode(get_cookie("walogin"))),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
+		$this->load->view('chat',['data'=>json_decode(base64_decode($_SESSION['walogin'])),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
 	}
 	public function detail()
 	{
@@ -73,7 +73,6 @@ class Chat extends CI_Controller {
             		
             		$data['namaevent']=$_ENV['userdata']->nik.' - '.$val->from;
     				$this->sendtosocketInbound(json_encode($data));
-            		$this->sendtosocketBroadcast(json_encode($data));
 
             	}
 
