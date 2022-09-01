@@ -11,11 +11,11 @@ class Chat extends CI_Controller {
   //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
 		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
-		$_GET['userdata']=json_decode(base64_decode(get_cookie("walogin")));
+		$_ENV['userdata']=json_decode(base64_decode(get_cookie("walogin")));
     }
 	public function index()
 	{	
-		$listUser=$this->M_chat->getList($_GET['userdata']->nik);
+		$listUser=$this->M_chat->getList($_ENV['userdata']->nik);
 		$this->load->view('chat',['data'=>json_decode(base64_decode(get_cookie("walogin"))),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
 	}
 	public function detail()
@@ -24,7 +24,7 @@ class Chat extends CI_Controller {
 		// print_r($detail);
 		$nik=false;
 		foreach ($detail as $key => $val) {
-			if($val->nik == $_GET['userdata']->nik || $val->nik==''){
+			if($val->nik == $_ENV['userdata']->nik || $val->nik==''){
 				$nik=true;
 			}
 		}
@@ -59,21 +59,21 @@ class Chat extends CI_Controller {
 	
 	public function inboundmsg()
 	{
-		$_GET['userdata']->nik;
+		echo $_ENV['userdata']->nik;
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
-            	if($this->M_chat->checkNewConversation($_GET['userdata']->nik,$val->from)->Count==0)
+            	if($this->M_chat->checkNewConversation($_ENV['userdata']->nik,$val->from)->Count==0)
             	{
             		$this->sendtosocketBroadcast(json_encode($data));
             	}
             	else{
-            		echo $_GET['userdata']->nik;
-            		$data['namaevent']=$_GET['userdata']->nik.' - '.$val->from;
+            		
+            		$data['namaevent']=$_ENV['userdata']->nik.' - '.$val->from;
     				$this->sendtosocketInbound(json_encode($data));
             		$this->sendtosocketBroadcast(json_encode($data));
-    				
+
             	}
 
         		$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
