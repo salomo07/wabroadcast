@@ -12,11 +12,13 @@ class Chat extends CI_Controller {
   //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
 		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
-		$_ENV['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
+		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
+        print_r($_SERVER['userdata']);
+
     }
 	public function index()
 	{	
-		$listUser=$this->M_chat->getList($_ENV['userdata']->nik);
+		$listUser=$this->M_chat->getList($_SERVER['userdata']->nik);
 		$this->load->view('chat',['data'=>json_decode(base64_decode($this->session->userdata('walogin'))),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
 	}
 	public function detail()
@@ -25,7 +27,7 @@ class Chat extends CI_Controller {
 		// print_r($detail);
 		$nik=false;
 		foreach ($detail as $key => $val) {
-			if($val->nik == $_ENV['userdata']->nik || $val->nik==''){
+			if($val->nik == $_SERVER['userdata']->nik || $val->nik==''){
 				$nik=true;
 			}
 		}
@@ -60,26 +62,27 @@ class Chat extends CI_Controller {
 	
 	public function inboundmsg()
 	{
+		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
+		print_r($_SERVER['userdata']);
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
             	$convers=$this->M_chat->checkNewConversation($val->from);
-            	if($this->M_chat->checkNewConversation($_ENV['userdata']->nik,$val->from)->Count==0)
+            	print_r($convers);
+            	if(count($convers)==0)
             	{
             		$this->sendtosocketBroadcast(json_encode($data));
             	}
             	else{
-            		
-            		$data['namaevent']=$_ENV['userdata']->nik.' - '.$val->from;
+            		$data['namaevent']=$convers[0]->nik.' - '.$val->from;
     				$this->sendtosocketInbound(json_encode($data));
-
             	}
 
         		$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
                 $url=$val->message->type=="IMAGE"?$val->message->url:'';
                 $name=isset($val->contact->name)?$val->contact->name:'';
-                $msgdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type);
+                $msgdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
                 $this->M_chat->insertMsg($msgdata);
             }
         }

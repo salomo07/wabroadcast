@@ -9,10 +9,10 @@ class M_chat extends CI_Model {
         $query = $this->db->query("select msgid,fromnumber,nik,type,contextid,text,url,contactname,status,statusio, DATE_FORMAT(time, '%H:%i %d/%m/%Y') as 'time' from tblmsg where fromnumber='$from' and status <> 'Closed' order by time asc");
         return $query->result();
     }
-    function checkNewConversation($nik,$from)
-    {   
-        $query = $this->db->query("SELECT COUNT(text) as 'Count' FROM `tblmsg` where fromnumber='$from' and nik<>'' and status <> 'Closed'");
-        return $query->row();
+    function checkNewConversation($from)
+    {
+        $query = $this->db->query("SELECT nik,text FROM `tblmsg` where fromnumber='$from' and nik<>'' and status <> 'Closed' limit 1");
+        return $query->result();
     }
     function getList($nik)
     {   
