@@ -54,7 +54,7 @@ class Chat extends CI_Controller {
 	}
 	public function cobainboundsocket(){
 		// $this->sendtosocketInbound(json_encode(["namaevent"=>"10091062 - 6281288643757","text"=>"Ini tes aja sih","from"=>"6281288643757"]));
-		$this->sendtosocketBroadcast(json_encode(["nik"=>"10091062","text"=>"Ini tes aja sih2","from"=>"6281288643757"]));
+		$this->sendtosocketBroadcast(json_encode(["nik"=>"10091062","text"=>"Ini tes aja sihx","from"=>"6281288643757"]));
 	}
 	
 	public function inboundmsg()
@@ -84,7 +84,7 @@ class Chat extends CI_Controller {
 	}
 	public function sendtosocketInbound($data){
 		$curl = curl_init();
-
+		echo $_ENV['BASEURL_SOCKETIO'].'/inboundmsg';
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'/inboundmsg',
 			CURLOPT_RETURNTRANSFER => true,
@@ -103,13 +103,13 @@ class Chat extends CI_Controller {
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		echo 'sendtosocketInbound';
+		// echo 'sendtosocketInbound';
 	}
 	public function sendtosocketBroadcast($data){
 		$curl = curl_init();
-
+		echo $_ENV['BASEURL_SOCKETIO'].'/broadcast';
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'broadcast',
+			CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'/broadcast',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
@@ -126,7 +126,7 @@ class Chat extends CI_Controller {
 		$response = curl_exec($curl);
 
 		curl_close($curl);
-		echo 'sendtosocketBroadcast';
+		// echo 'sendtosocketBroadcast';
 	}
 	public function sendtoclient($id,$from,$text)
 	{	
