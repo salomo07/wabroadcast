@@ -72,6 +72,8 @@ class Chat extends CI_Controller {
             		echo $_GET['userdata']->nik;
             		$data['namaevent']=$_GET['userdata']->nik.' - '.$val->from;
     				$this->sendtosocketInbound(json_encode($data));
+            		$this->sendtosocketBroadcast(json_encode($data));
+    				
             	}
 
         		$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
