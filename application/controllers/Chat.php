@@ -64,6 +64,7 @@ class Chat extends CI_Controller {
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
+            	$convers=$this->M_chat->checkNewConversation($val->from);
             	if($this->M_chat->checkNewConversation($_ENV['userdata']->nik,$val->from)->Count==0)
             	{
             		$this->sendtosocketBroadcast(json_encode($data));
