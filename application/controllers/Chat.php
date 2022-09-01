@@ -67,7 +67,7 @@ class Chat extends CI_Controller {
             		$data['namaevent']=$_GET['userdata']->nik.' - '.$val->from;
     				$this->sendtosocketInbound(json_encode($data));
             		$this->sendtosocketBroadcast(json_encode($data));
-    				
+
             	}
 
         		$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
@@ -97,6 +97,7 @@ class Chat extends CI_Controller {
 		$response = curl_exec($curl);
 
 		curl_close($curl);
+		echo 'sendtosocketInbound';
 	}
 	public function sendtosocketBroadcast($data){
 		$curl = curl_init();
@@ -119,6 +120,7 @@ class Chat extends CI_Controller {
 		$response = curl_exec($curl);
 
 		curl_close($curl);
+		echo 'sendtosocketBroadcast';
 	}
 	public function sendtoclient($id,$from,$text)
 	{	

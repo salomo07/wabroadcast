@@ -906,7 +906,6 @@
 
         var xxx=[];
         list.forEach((val,i)=>{
-            console.log(val)
             var usr=usrx;
             $(usr).attr('value',val.fromnumber);
             $(usr).find('.media-contact-name').find('span').eq(0).text(val.contactname==''?'Sahabat Adira':val.contactname);
@@ -916,7 +915,7 @@
                 $(usr).find('.main-img-user > span').hide();
             }
             $(usr).find('.media-body').find('p').text(val.text);
-            xxx.push($(usr).clone());console.log(val)
+            xxx.push($(usr).clone());
             
             socket.on(<?= $data->nik; ?>+' - '+val.fromnumber,(msg)=>{
                 console.log('Pesan masuk :',msg)
