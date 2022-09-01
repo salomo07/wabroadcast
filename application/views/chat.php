@@ -11,7 +11,7 @@
         <meta name="description" content="Sash – Bootstrap 5  Admin & Dashboard Template">
         <meta name="author" content="Spruko Technologies Private Limited">
         <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
-
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <!-- FAVICON -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/images/brand/favicon.ico" />
         <title>Sash – PHP Bootstrap 5 Admin & Dashboard Template</title>
