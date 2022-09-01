@@ -5,19 +5,19 @@ class Chat extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        
-        // if($_SESSION['walogin']==""){
+
+        // if($this->session->userdata('walogin');==""){
         //     redirect('auth/login');
         // }
   //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
 		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
-		$_ENV['userdata']=json_decode(base64_decode($_SESSION['walogin']));
+		$_ENV['userdata']=json_decode(base64_decode($this->session->userdata('item');));
     }
 	public function index()
 	{	
 		$listUser=$this->M_chat->getList($_ENV['userdata']->nik);
-		$this->load->view('chat',['data'=>json_decode(base64_decode($_SESSION['walogin'])),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
+		$this->load->view('chat',['data'=>json_decode(base64_decode($this->session->userdata('item');)),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
 	}
 	public function detail()
 	{
