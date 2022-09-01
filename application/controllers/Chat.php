@@ -10,7 +10,7 @@ class Chat extends CI_Controller {
         }
   //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
-		$_ENV['BASEURL_SOCKETIO']='localhost:3000';
+		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
 		$_GET['userdata']=json_decode(base64_decode(get_cookie("walogin")));
     }
 	public function index()
