@@ -5,6 +5,7 @@ class Chat extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
+        
         if($_SESSION['walogin']==""){
             redirect('auth/login');
         }
@@ -59,7 +60,6 @@ class Chat extends CI_Controller {
 	
 	public function inboundmsg()
 	{
-		echo $_ENV['userdata']->nik;
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
