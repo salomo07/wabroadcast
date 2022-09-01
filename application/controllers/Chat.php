@@ -59,6 +59,7 @@ class Chat extends CI_Controller {
 	
 	public function inboundmsg()
 	{
+		$_GET['userdata']->nik;
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
