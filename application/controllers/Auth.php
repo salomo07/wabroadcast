@@ -13,7 +13,8 @@ class Auth extends CI_Controller {
 	}
 	public function signout()
 	{
-		delete_cookie('walogin');
+		// delete_cookie('walogin');
+		unset($_SESSION['walogin']);
 		redirect('auth/login');
 	}
 	public function signin()
@@ -23,7 +24,8 @@ class Auth extends CI_Controller {
 		if ($userdata=="null"){
 			redirect('auth/login');
 		}else{
-			set_cookie('walogin',base64_encode($userdata),'28800');
+			$this->session->set_userdata('walogin',$array);
+			// set_cookie('walogin',base64_encode($userdata),'28800');
 			redirect('dashboard');
 		}
 	}
