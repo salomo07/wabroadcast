@@ -52,9 +52,12 @@ class Chat extends CI_Controller {
 			echo 'from, nik, type, text must included';
 		}
 	}
+	public function cobainboundsocket(){
+		$this->sendtosocketInbound(json_encode(["namaevent"=>"10091062 - 6281288643757",'text'=>"Ini tes aja sih"]));
+	}
+	
 	public function inboundmsg()
 	{
-
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
