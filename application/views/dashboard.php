@@ -809,7 +809,6 @@
 		<script src="assets/js/themeColors.js"></script>
 		<script src="assets/js/custom.js"></script>
         <script src="assets/switcher/js/switcher.js"></script>
-        <script src="assets/socketio/socket.io.min.js" crossorigin="anonymous"></script>
     </body>
 
 </html>
