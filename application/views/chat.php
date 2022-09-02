@@ -826,8 +826,15 @@
         console.log(`connect_error due to ${err.message}`);
         toastr.error("Fail to connect socketio, check your connection",'Offline');
     });
-    socket.on('reconnect', ()=>{
-        toastr.success("Successfully reconnect",'Online');
+    socket.on('connect', ()=>{
+        toastr.success("Successfully connect",'Online');
+        // $(".media.new").map((i,val)=>{
+        //     console.log(val);
+        //     socket.on(<?= $data->nik; ?>+' - '+$(val).attr('value'),(msg)=>{
+        //         console.log('Pesan masukx :',msg)
+        //         incomingMsg(msg)
+        //     })
+        // })
     });
 
     var cleanChat=(ele)=>{
@@ -916,7 +923,7 @@
             }
             $(usr).find('.media-body').find('p').text(val.text);
             xxx.push($(usr).clone());
-            
+            console.log(<?= $data->nik; ?>+' - '+val.fromnumber+ ' Listening...')
             socket.on(<?= $data->nik; ?>+' - '+val.fromnumber,(msg)=>{
                 console.log('Pesan masuk :',msg)
                 incomingMsg(msg)

@@ -11,7 +11,7 @@ class Chat extends CI_Controller {
         // }
         // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
-		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
+		$_ENV['BASEURL_SOCKETIO']='localhost:3000';
 		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
 
     }
@@ -53,10 +53,6 @@ class Chat extends CI_Controller {
 			echo 'from, nik, type, text must included';
 		}
 	}
-	public function cobainboundsocket(){
-		// $this->sendtosocketInbound(json_encode(["namaevent"=>"10091062 - 6281288643757","text"=>"Ini tes aja sih","from"=>"6281288643757"]));
-		$this->sendtosocketBroadcast(json_encode(["nik"=>"10091062","text"=>"Ini tes aja sihx","from"=>"6281288643757"]));
-	}
 	
 	public function inboundmsg()
 	{
@@ -65,21 +61,23 @@ class Chat extends CI_Controller {
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
             	$convers=$this->M_chat->checkNewConversation($val->from);
-            	// print_r($convers);
-            	if(count($convers)==0)
-            	{
-            		$this->sendtosocketBroadcast(json_encode($data));
-            	}
-            	else{
-            		$data['namaevent']=$convers[0]->nik.' - '.$val->from;
-    				$this->sendtosocketInbound(json_encode($data));
-            	}
-
-        		$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
+            	$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
                 $url=$val->message->type=="IMAGE"?$val->message->url:'';
                 $name=isset($val->contact->name)?$val->contact->name:'';
-                $msgdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
-                $this->M_chat->insertMsg($msgdata);
+            	$msgdata=array('msgid'=>$val->messageId,'from'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
+            	$insertdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
+            	if(count($convers)==0)
+            	{
+            		$this->sendtosocketBroadcast(json_encode($msgdata));
+            	}
+            	else{
+            		$msgdata['namaevent']=$convers[0]->nik.' - '.$val->from;
+    				$this->sendtosocketInbound(json_encode($msgdata));
+            	}
+
+        		
+                
+                $this->M_chat->insertMsg($insertdata);
             }
         }
 	}
@@ -87,7 +85,7 @@ class Chat extends CI_Controller {
 		$curl = curl_init();
 		// echo $_ENV['BASEURL_SOCKETIO'].'/inboundmsg';
 		curl_setopt_array($curl, array(
-			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'/inboundmsg',
+			CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'/inboundmsg',
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => '',
 			CURLOPT_MAXREDIRS => 10,
