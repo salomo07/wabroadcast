@@ -12,6 +12,6 @@ class Dashboard extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('dashboard',['data'=>json_decode(base64_decode(get_cookie("walogin")))]);
+		$this->load->view('dashboard',['data'=>json_decode(base64_decode($this->session->userdata('walogin')))]);
 	}
 }
