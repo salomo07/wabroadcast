@@ -26,7 +26,10 @@ class Chat extends CI_Controller {
 	}
 	public function detail()
 	{
+		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
 		$detail=$this->M_chat->getConversation($_GET['from']);
+		// print_r($detail);echo '\n'.$_SERVER['userdata']->nik;
+		$this->M_chat->pickbyAgent(array("nik"=>$_SERVER['userdata']->nik,"fromnumber"=>$_GET['from']));
 		$nik=false;
 		foreach ($detail as $key => $val) {
 			if($val->nik == $_SERVER['userdata']->nik || $val->nik==''){
@@ -35,7 +38,7 @@ class Chat extends CI_Controller {
 		}
 		echo $nik? json_encode($detail):json_encode(array());
 	}
-	public function saveOutboundMsg()
+	public function saveOutboundMsgx()
 	{	
 		$data=json_decode(file_get_contents('php://input'));
 		if(isset($data->from) && isset($data->nik) && isset($data->text)){
@@ -72,15 +75,14 @@ class Chat extends CI_Controller {
             	$insertdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
             	if(count($convers)==0)
             	{
-            		$this->sendtosocketBroadcast(json_encode($msgdata));
+            		$this->M_chat->insertMsg($insertdata);
+            		$this->sendtosocketBroadcast(json_encode($msgdata));echo 'sendtosocketBroadcast';
             	}
             	else{
+            		$this->M_chat->insertMsg($insertdata);
             		$msgdata['namaevent']=$convers[0]->nik.' - '.$val->from;
-    				$this->sendtosocketInbound(json_encode($msgdata));
+    				$this->sendtosocketInbound(json_encode($msgdata));echo 'sendtosocketInbound';
             	}
-
-                $this->M_chat->insertMsg($insertdata);
-                echo 'string';
             }
         }
 	}
@@ -109,7 +111,6 @@ class Chat extends CI_Controller {
 	}
 	public function sendtosocketBroadcast($data){
 		$curl = curl_init();
-		echo $_ENV['BASEURL_SOCKETIO'].'/broadcast';
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'/broadcast',
 			CURLOPT_RETURNTRANSFER => true,

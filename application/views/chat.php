@@ -828,13 +828,6 @@
     });
     socket.on('connect', ()=>{
         toastr.success("Successfully connect",'Online');
-        // $(".media.new").map((i,val)=>{
-        //     console.log(val);
-        //     socket.on(<?= $data->nik; ?>+' - '+$(val).attr('value'),(msg)=>{
-        //         console.log('Pesan masukx :',msg)
-        //         incomingMsg(msg)
-        //     })
-        // })
     });
 
     var cleanChat=(ele)=>{
@@ -882,9 +875,10 @@
                ;
                 if(res.length==0){
                     $('#chatarea').find('.content-inner').html('<center><h2>No Conversation</h2></center>');
+                    $('.main-chat-footer').hide();
                 }
                 else{
-                    
+                    $('.main-chat-footer').show();
                     $('#ChatBody').find('.content-inner').html('');
                     res.map((val,i)=>{
 

@@ -805,7 +805,6 @@
         <script src="assets/plugins/gallery/lg-zoom.js"></script>
         <script src="assets/plugins/gallery/lg-hash.js"></script>
         <script src="assets/plugins/gallery/lg-share.js"></script>
-        <script src="assets/js/chat.js"></script>
 		<script src="assets/js/themeColors.js"></script>
 		<script src="assets/js/custom.js"></script>
         <script src="assets/switcher/js/switcher.js"></script>
