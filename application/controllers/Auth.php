@@ -25,7 +25,6 @@ class Auth extends CI_Controller {
 			redirect('auth/login');
 		}else{
 			$this->session->set_userdata('walogin',base64_encode($userdata));
-			// set_cookie('walogin',base64_encode($userdata),'28800');
 			redirect('dashboard');
 		}
 	}
