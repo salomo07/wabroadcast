@@ -6,15 +6,13 @@ class Chat extends CI_Controller {
     {
         parent::__construct();
 
-        // if($this->session->userdata('walogin')==""){
-        //     redirect('auth/login');
-        // }
-        print_r($this->session->userdata('walogin'));
-  //       $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
+        if($this->session->userdata('walogin')==""){
+            redirect('auth/login');
+        }
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
 		$_ENV['BASEURL_SOCKETIO']='https://wasocket.herokuapp.com';
 		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
-        print_r($_SERVER['userdata']);
 
     }
 	public function index()
@@ -25,7 +23,6 @@ class Chat extends CI_Controller {
 	public function detail()
 	{
 		$detail=$this->M_chat->getConversation($_GET['from']);
-		// print_r($detail);
 		$nik=false;
 		foreach ($detail as $key => $val) {
 			if($val->nik == $_SERVER['userdata']->nik || $val->nik==''){
@@ -64,7 +61,6 @@ class Chat extends CI_Controller {
 	public function inboundmsg()
 	{
 		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
-		print_r($_SERVER['userdata']);
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
