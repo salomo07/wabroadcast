@@ -779,7 +779,7 @@
                     </div>
                 </div>
             </div>
-        </footer>            <!-- FOOTER END -->
+        </footer>
         </div>
 
         
