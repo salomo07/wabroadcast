@@ -12,11 +12,15 @@ class Chat extends CI_Controller {
         // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
 		$_ENV['BASEURL_SOCKETIO']='wasocket.herokuapp.com';
-		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
+		
 
     }
 	public function index()
 	{	
+		if($this->session->userdata('walogin')==""){
+            redirect('auth/login');
+        }
+        $_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
 		$listUser=$this->M_chat->getList($_SERVER['userdata']->nik);
 		$this->load->view('chat',['data'=>json_decode(base64_decode($this->session->userdata('walogin'))),'listuser'=>$listUser,'company'=>getenv('COMPANY')]);
 	}
@@ -75,9 +79,8 @@ class Chat extends CI_Controller {
     				$this->sendtosocketInbound(json_encode($msgdata));
             	}
 
-        		
-                
                 $this->M_chat->insertMsg($insertdata);
+                echo 'string';
             }
         }
 	}

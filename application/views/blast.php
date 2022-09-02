@@ -3,35 +3,57 @@
 <html lang="en" dir="ltr">
 
     <head>
-                
-        <!-- META DATA -->
-        <meta charset="UTF-8">
-        <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Sash – Bootstrap 5  Admin & Dashboard Template">
-        <meta name="author" content="Spruko Technologies Private Limited">
-        <meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
-        <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
-        <!-- FAVICON -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/images/brand/favicon.ico" />
-        <title>WA Dashboard</title>
-        <link id="style" href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="assets/css/style.css" rel="stylesheet" />
-        <link href="assets/css/dark-style.css" rel="stylesheet" />
-        <link href="assets/css/transparent-style.css" rel="stylesheet">
-        <link href="assets/css/skin-modes.css" rel="stylesheet" />
-        <link href="assets/css/icons.css" rel="stylesheet" />
-        <link id="theme" rel="stylesheet" type="text/css" media="all" href="assets/colors/color1.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/toastr.css">
+        		
+		<!-- META DATA -->
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Sash – Bootstrap 5  Admin & Dashboard Template">
+		<meta name="author" content="Spruko Technologies Private Limited">
+		<meta name="keywords" content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
+
+		<!-- FAVICON -->
+		<link rel="shortcut icon" type="image/x-icon" href="assets/images/brand/favicon.ico" />
+
+		<!-- TITLE -->
+		<title>Sash – PHP Bootstrap 5 Admin & Dashboard Template</title>
+
+		<!-- BOOTSTRAP CSS -->
+		<link id="style" href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- STYLE CSS -->
+		<link href="assets/css/style.css" rel="stylesheet" />
+		<link href="assets/css/dark-style.css" rel="stylesheet" />
+		<link href="assets/css/transparent-style.css" rel="stylesheet">
+		<link href="assets/css/skin-modes.css" rel="stylesheet" />
+
+		<!--- FONT-ICONS CSS -->
+		<link href="assets/css/icons.css" rel="stylesheet" />
+
+		<!-- COLOR SKIN CSS -->
+		<link id="theme" rel="stylesheet" type="text/css" media="all" href="assets/colors/color1.css" />
+
+		<!-- INTERNAL SWITCHER CSS -->
+		<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
+		<link href="assets/switcher/demo.css" rel="stylesheet" />
+
     </head>
 
     <body class="app sidebar-mini ltr light-mode">
+
+        <!-- GLOBAL-LOADER -->
         <div id="global-loader">
             <img src="assets/images/loader.svg" class="loader-img" alt="Loader">
         </div>
+        <!-- /GLOBAL-LOADER -->
+
+        <!-- PAGE -->
         <div class="page">
             <div class="page-main">
-            <div class="app-header header sticky">
+
+                <!-- APP-HEADER -->
+                
+			<div class="app-header header sticky">
                 <div class="container-fluid main-container">
                     <div class="d-flex">
                         <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0)"></a>
@@ -181,9 +203,11 @@
                         </div>
                     </div>
                 </div>
-            </div>           
+            </div>                <!-- /APP-HEADER -->
+
+                <!--APP-SIDEBAR-->
                 
-            <div class="sticky">
+			<div class="sticky">
                 <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
                 <div class="app-sidebar">
                     <div class="side-header">
@@ -223,118 +247,30 @@
                     </div>
                 </div>
                 <!--/APP-SIDEBAR-->
-            </div>
+            </div>                <!--/APP-SIDEBAR-->
 
-            <div class="main-content app-content mt-0">
-                <div class="side-app">
-                <div class="main-container container-fluid">
-                  <div class="container">
-                    <!-- ROW-1 OPEN-->
-                    <div class="row" style="margin-top: 30px;">
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4" >
-                            <div class="card overflow-hidden" >
-                                <div class="main-content-app pt-0 main-chat-2" style="height:500px;">
-                                    <div class="main-content-left main-content-left-chat">
-                                        <div class="card-body d-flex">
-                                            <div class="main-img-user online"><img alt="avatar" src="assets/images/users/21.jpg"></div>
-                                            <div class="main-chat-msg-name">
-                                                <h6>Adira Whatsapp</h6>
-                                                <span class="dot-label bg-success"></span><small class="me-3">Available</small>
-                                            </div>
-                                            <nav class="nav ms-auto">
-                                                <div class="dropdown">
-                                                    <a class="nav-link text-muted fs-20" href="javascript:void(0)" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-horizontal"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-user me-1"></i> Profile</a>
-                                                        <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-edit me-1"></i> Edit</a>
-                                                        <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-users me-1"></i> New Group</a>
-                                                        <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-settings me-1"></i> Settings</a>
-                                                        <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-trash-2 me-1"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </nav>
-                                        </div>
-
-                                        <!-- main-chat-header -->
-                                        <div class="card-body ">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search ...">
-                                            </div>
-                                            <div class="main-chat-contacts-wrapper d-none d-sm-block">
-                                                
-                                                <!-- main-active-contacts -->
-                                            </div>
-                                        </div>
-                                        <div class="tab-content main-chat-list flex-2 ">
-                                            <div class="tab-pane active" id="ChatList">
-                                                <div id="chatList" class="main-chat-list tab-pane">
-                                                    <div class="media new" value="6281288643757">
-                                                        <div class="main-img-user">
-                                                            <img alt="" src="assets/images/users/6.jpg"> <span>3</span>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <div class="media-contact-name">
-                                                                <span>Ariana Monino</span> <span>30 min</span>
-                                                            </div>
-                                                            <p>Good Morning</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- main-chat-list -->
-                                            </div>
-                                        </div>
-                                        <!-- main-chat-list -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
-                        <div class="card">
-                            <div id="box" class="main-content-app pt-0" style="height:500px;">
-                                <div id="chatarea" class="main-content-body main-content-body-chat h-100">
-                                    <div class="main-chat-header pt-3 d-block d-sm-flex" >
-                                        <div class="main-img-user online"><img alt="avatar" src="assets/images/users/1.png"></div>
-                                        <input type="hidden" id="notelp">
-                                        <input type="hidden" id="nonik" value="<?php echo $data->nik ?>">
-                                        <div class="main-chat-msg-name mt-2">
-                                            <h6>Sahabat Adira</h6>
-                                        </div>
-                                        <nav class="nav">
-                                            <div class="">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Search ...">
-                                                    <span class="input-group-text btn bg-white text-muted border-start-0"><i class="fe fe-search"></i></span>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-horizontal"></i></a>
-                                                <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-trash-2 me-1"></i> Close Conversation</a>
-                                                </div>
-                                            </div>
-                                        </nav>
-                                    </div>
-                                    <div class="main-chat-body flex-2" id="ChatBody" style="height: 60%;">
-                                        <div class="content-inner">
-                                        </div>
-                                    </div>
-                                    <div class="main-chat-footer" style="height: 20%;">
-                                        <textarea id="txtMsg" class="form-control" rows="5" placeholder="Type your message here..." type="text" style="height: 80px; margin-bottom: 5px;margin-top: 5px;"></textarea>
-                                        <button id="btnSend" onclick="sendChat()" type="button" class="btn btn-icon  btn-primary brround"><i class="fa fa-paper-plane-o"></i></button>
-                                        <nav class="nav">
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-            </div>
-            </div>
+                <div class="main-content app-content mt-0">
+  <div class="side-app">
+    <!-- CONTAINER -->
+    <div class="main-container container-fluid">
+      <div class="container">
+        <!-- ROW-1 OPEN-->
+        <div class="row" style="margin-top: 30px;">
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-4" >
+			</div>
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+			</div>
+        </div>
+      </div>
+    </div>
+    <!-- CONTAINER CLOSED-->
+  </div>
+</div>
+</div>
     
+
+            <!--SIDEBAR-RIGHT-->
+            
         <div class="sidebar sidebar-right sidebar-animate">
             <div class="panel panel-primary card mb-0 shadow-none border-0">
                 <div class="tab-menu-heading border-0 d-flex p-3">
@@ -747,9 +683,95 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>            <!--/SIDEBAR-RIGHT-->
+
+            <!-- COUNTRY-SELECTOR MODAL-->
             
-        <footer class="footer">
+		<div class="modal fade" id="country-selector">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content country-select-modal">
+                    <div class="modal-header">
+                        <h6 class="modal-title">Choose Country</h6><button aria-label="Close" class="btn-close"
+                            data-bs-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="row p-3">
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block active">
+                                    <span class="country-selector"><img alt="" src="assets/images/flags/us_flag.jpg"
+                                            class="me-3 language"></span>USA
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt=""
+                                        src="assets/images/flags/italy_flag.jpg"
+                                        class="me-3 language"></span>Italy
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt=""
+                                        src="assets/images/flags/spain_flag.jpg"
+                                        class="me-3 language"></span>Spain
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt=""
+                                        src="assets/images/flags/india_flag.jpg"
+                                        class="me-3 language"></span>India
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt=""
+                                        src="assets/images/flags/french_flag.jpg"
+                                        class="me-3 language"></span>French
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt=""
+                                        src="assets/images/flags/russia_flag.jpg"
+                                        class="me-3 language"></span>Russia
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt=""
+                                        src="assets/images/flags/germany_flag.jpg"
+                                        class="me-3 language"></span>Germany
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt=""
+                                        src="assets/images/flags/argentina.jpg"
+                                        class="me-3 language"></span>Argentina
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt="" src="assets/images/flags/malaysia.jpg"
+                                        class="me-3 language"></span>Malaysia
+                                </a>
+                            </li>
+                            <li class="col-lg-6 mb-2">
+                                <a href="javascript:void(0)" class="btn btn-country btn-lg btn-block">
+                                    <span class="country-selector"><img alt="" src="assets/images/flags/turkey.jpg"
+                                        class="me-3 language"></span>Turkey
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>            <!-- /COUNTRY-SELECTOR MODAL-->
+
+            <!-- FOOTER -->
+            
+		<footer class="footer">
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
                     <div class="col-md-12 col-sm-12 text-center">
@@ -761,18 +783,19 @@
         </div>
 
         
-        <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+		<!-- BACK-TO-TOP -->
+		<a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
-        <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/plugins/sidemenu/sidemenu.js"></script>
-        <script src="assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
-        <script src="assets/js/typehead.js"></script>
-        <script src="assets/plugins/sidebar/sidebar.js"></script>
-        <script src="assets/plugins/p-scroll/perfect-scrollbar.js"></script>
-        <script src="assets/plugins/p-scroll/pscroll-1.js"></script>
-        <script src="assets/js/sticky.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+		<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/plugins/sidemenu/sidemenu.js"></script>
+		<script src="assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
+		<script src="assets/js/typehead.js"></script>
+		<script src="assets/plugins/sidebar/sidebar.js"></script>
+		<script src="assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+		<script src="assets/plugins/p-scroll/pscroll-1.js"></script>
+		<script src="assets/js/sticky.js"></script>
         <script src="assets/plugins/gallery/picturefill.js"></script>
         <script src="assets/plugins/gallery/lightgallery.js"></script>
         <script src="assets/plugins/gallery/lightgallery-1.js"></script>
@@ -783,214 +806,9 @@
         <script src="assets/plugins/gallery/lg-hash.js"></script>
         <script src="assets/plugins/gallery/lg-share.js"></script>
         <script src="assets/js/chat.js"></script>
-        <script src="assets/js/themeColors.js"></script>
-        <script src="assets/js/custom.js"></script>
+		<script src="assets/js/themeColors.js"></script>
+		<script src="assets/js/custom.js"></script>
         <script src="assets/switcher/js/switcher.js"></script>
-        <script src="assets/socketio/socket.io.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha512-HaoDYc3PGduguBWOSToNc0AWGHBi2Y432Ssp3wNIdlOzrunCtB2qq6FrhtPbo+PlbvRbyi86dr5VQx61eg/daQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="assets/js/toastr.min.js"></script>
     </body>
-    <div id="msgright" style="display: none;" class="media flex-row-reverse chat-right">
-      <div class="main-img-user online">
-        <img alt="avatar" src="assets/images/users/6.jpg">
-      </div>
-      <div class="media-body">
-        <div class="main-msg-wrapper" style="background-color: aliceblue;"> Nulla consequat massa quis enim. Donec pede justo, fringilla vel... </div>
-        <div>
-          <span>9:48 am</span>
-          <a href="javascript:void(0)">
-            <i class="icon ion-android-more-horizontal"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div id="msgleft" style="display: none;" class="media chat-left">
-        <div class="main-img-user online">
-            <img alt="avatar" src="assets/images/users/1.png">
-        </div>
-        <div class="media-body">
-            <div class="main-msg-wrapper" style="background-color: gray"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. </div>
-            <div>
-              <span>9:32 am</span>
-              <a href="javascript:void(0)">
-                <i class="icon ion-android-more-horizontal"></i>
-              </a>
-            </div>
-        </div>
-    </div>
+
 </html>
-
-<script type="text/javascript">
-    var socket = io("<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
-    socket.on("connect_error", (err) => {
-        console.log(`connect_error due to ${err.message}`);
-        toastr.error("Fail to connect socketio, check your connection",'Offline');
-    });
-    socket.on('connect', ()=>{
-        toastr.success("Successfully connect",'Online');
-        // $(".media.new").map((i,val)=>{
-        //     console.log(val);
-        //     socket.on(<?= $data->nik; ?>+' - '+$(val).attr('value'),(msg)=>{
-        //         console.log('Pesan masukx :',msg)
-        //         incomingMsg(msg)
-        //     })
-        // })
-    });
-
-    var cleanChat=(ele)=>{
-        $('#notelp').val($(ele).attr('value'));
-        $('#chatarea').find('.main-chat-msg-name').find('h6').text($(ele).find('.media-contact-name').find('span').eq(0).text())
-        $('#chatarea').find('.content-inner').html('<center>Loading...<center>');
-        $('.main-content-body').show();   
-        getDetailChat($(ele).attr('value'));
-        $(".media.new").css('background-color','white');
-        $(ele).css('background-color','aliceblue');
-        $(ele).find('.main-img-user > span').text(0);
-        $(ele).find('.main-img-user > span').hide();
-    }
-    var sendChat=()=>{
-        console.log('sending')
-        var msgLeft=$('#msgleft').clone();
-        $(msgLeft).find('.main-msg-wrapper').text($('#txtMsg').val());
-        $(msgLeft).find('.main-msg-wrapper').next().find('span').text('sending...');
-        $(msgLeft).removeAttr('id');msgLeft.show();
-        $('.content-inner').append($(msgLeft).clone())
-        $.ajax({
-            url: "chat/saveOutboundMsg",
-            dataType:"json",
-            method:"POST",
-            "data": JSON.stringify({"from":$('#notelp').val(),"nik":$('#nonik').val(),"text":$('#txtMsg').val()}), 
-            success: function(res){
-               console.log(res);
-               $('.content-inner').find('.media.chat-left').last().find('.main-msg-wrapper').next().find('span').text(res.time);
-               $('#txtMsg').val('');
-            }
-        });
-    }
-    var getDetailChat=(no)=>{
-        var xxx=[];
-        var msgRight=$('#msgright').clone();
-        var msgLeft=$('#msgleft').clone();
-        
-        msgRight.show();
-        msgLeft.show();
-        $('#ChatBody').find('.content-inner').html('<center>Loading...</center>')
-        $.ajax({
-            url: "chat/detail?from="+no+"&nik="+<?php echo $data->nik ?>,
-            dataType:"json", 
-            success: function(res){
-               ;
-                if(res.length==0){
-                    $('#chatarea').find('.content-inner').html('<center><h2>No Conversation</h2></center>');
-                }
-                else{
-                    
-                    $('#ChatBody').find('.content-inner').html('');
-                    res.map((val,i)=>{
-
-                        if(val.statusio=='Out'){
-                            $(msgLeft).find('.main-msg-wrapper').text(val.text);
-                            $(msgLeft).find('.main-msg-wrapper').next().find('span').text(val.time);
-                            $(msgLeft).removeAttr('id');
-                            xxx.push(msgLeft.clone());
-                        }else if (val.statusio=='In'){
-                            console.log("Data :",val);
-                            $(msgRight).find('.main-msg-wrapper').text(val.text);
-                            $(msgRight).find('.main-msg-wrapper').next().find('span').text(val.time);
-                            $(msgRight).removeAttr('id');
-                            xxx.push(msgRight.clone());
-                        }
-                    });
-                    $('#ChatBody').find('.content-inner').html(xxx)
-                }
-            }
-        });
-    }
-    const usrx=$('#chatList').find('.media.new').eq(0);
-    var initChatlist=()=>{
-        var list=<?= json_encode($listuser); ?>;
-        $('#chatList').html('');
-
-        var xxx=[];
-        list.forEach((val,i)=>{
-            var usr=usrx;
-            $(usr).attr('value',val.fromnumber);
-            $(usr).find('.media-contact-name').find('span').eq(0).text(val.contactname==''?'Sahabat Adira':val.contactname);
-            $(usr).find('.media-contact-name').find('span').eq(1).text(val.time);
-            $(usr).find('.main-img-user > span').text(val.unread);
-            if(val.unread==0){
-                $(usr).find('.main-img-user > span').hide();
-            }
-            $(usr).find('.media-body').find('p').text(val.text);
-            xxx.push($(usr).clone());
-            console.log(<?= $data->nik; ?>+' - '+val.fromnumber+ ' Listening...')
-            socket.on(<?= $data->nik; ?>+' - '+val.fromnumber,(msg)=>{
-                console.log('Pesan masuk :',msg)
-                incomingMsg(msg)
-            })
-        });
-        $('#chatList').html(xxx);
-        $('.main-content-body').hide();
-    }
-    var incomingMsg=(msg)=>{
-        var msgHTML=$('#msgright').show();
-        $(msgHTML).find('.main-msg-wrapper').text(msg.text);
-        $(msgHTML).find('.media-body').find('span').text(msg.time);
-        $('.content-inner').append($(msgHTML).clone());
-
-        var exist=$("div[value='" + msg.from + "']");
-        console.log(exist)
-        if($("div[value='" + msg.from + "']").length==1){
-            if($('#notelp').val()!=msg.from)
-            {
-                $(exist).find('.main-img-user>span').text(parseInt($(exist).find('.main-img-user>span').text())+1);
-                $(exist).find('.main-img-user > span').show();
-            }
-            $(exist).find('.media-body > p').text(msg.text)
-            $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
-        }
-    }
-    
-    $(function () {
-        $(".media.new").on('click',function (){
-            console.log("Loading detail chat");
-            cleanChat(this)
-        })
-    });
-    var receivingBroadcast=()=>{
-        socket.on("broadcast",(msg)=>{
-
-            if($('#chatList').find('.media.new').length==0){
-                addList(msg,0);
-            }else{
-                var exist=$("div[value='" + msg.from + "']");
-                console.log(msg,$("div[value='" + msg.from + "']").length)
-                if($("div[value='" + msg.from + "']").length==1){
-                    $(exist).find('.main-img-user>span').text(parseInt($(exist).find('.main-img-user>span').text())+1);
-                    $(exist).find('.media-body > p').text(msg.text)
-                    $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
-                    $(exist).find('.main-img-user > span').show();
-                }
-                else{
-                    addList(msg,0);
-                }
-            }
-        })
-    }
-    var addList=(msg,count)=>{
-        var usr=usrx;
-        var newMsg=count+1;
-        console.log('addList :',msg);
-        $(usr).attr('value',msg.from);
-        $(usr).find('.main-img-user>span').text(count+1)
-        $(usr).find('.media-contact-name').find('span').eq(0).text(msg.contactname==''?'Sahabat Adira':msg.contactname);
-        $(usr).find('.media-contact-name').find('span').eq(1).text(msg.time);
-        $(usr).find('.media-body').find('p').text(msg.text);
-        $('#chatList').append($(usr).clone());
-        $('#chatList').on('click','.media.new',function(){
-            cleanChat(this)
-        })
-    }
-    initChatlist();
-    receivingBroadcast();
-</script>
