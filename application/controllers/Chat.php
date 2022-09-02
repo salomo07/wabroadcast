@@ -65,7 +65,7 @@ class Chat extends CI_Controller {
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
             	$convers=$this->M_chat->checkNewConversation($val->from);
-            	print_r($convers);
+            	// print_r($convers);
             	if(count($convers)==0)
             	{
             		$this->sendtosocketBroadcast(json_encode($data));
@@ -85,7 +85,7 @@ class Chat extends CI_Controller {
 	}
 	public function sendtosocketInbound($data){
 		$curl = curl_init();
-		echo $_ENV['BASEURL_SOCKETIO'].'/inboundmsg';
+		// echo $_ENV['BASEURL_SOCKETIO'].'/inboundmsg';
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => getenv('BASEURL_SOCKETIO').'/inboundmsg',
 			CURLOPT_RETURNTRANSFER => true,
