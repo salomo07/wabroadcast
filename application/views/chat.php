@@ -208,8 +208,8 @@
                                 <h3>Blast</h3>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=uncontacted"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncontacted</span></a>
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=document"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncompleted Document</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Uncontacted"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncontacted</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Document"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncompleted Document</span></a>
                                 <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Promo"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Penawaran Promo</span></a>
                             </li>
                             <li class="sub-category">
@@ -309,7 +309,7 @@
                                             <div class="dropdown">
                                                 <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="chat/closing"><i class="fe fe-trash-2 me-1"></i> Close Conversation</a>
+                                                    <a id="linkClose" class="dropdown-item" href="chat/closing?from="><i class="fe fe-trash-2 me-1"></i> Close Conversation</a>
                                                 </div>
                                             </div>
                                         </nav>
@@ -834,6 +834,7 @@
         $('#notelp').val($(ele).attr('value'));
         $('#chatarea').find('.main-chat-msg-name').find('h6').text($(ele).find('.media-contact-name').find('span').eq(0).text())
         $('#chatarea').find('.content-inner').html('<center>Loading...<center>');
+        $('#linkClose').attr("href","chat/closing?from="+$(ele).attr('value'));
         $('.main-content-body').show();   
         getDetailChat($(ele).attr('value'));
         $(".media.new").css('background-color','white');

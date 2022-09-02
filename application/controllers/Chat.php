@@ -15,6 +15,10 @@ class Chat extends CI_Controller {
 		
 
     }
+    public function closing(){
+    	$this->M_chat->closeCoversation($_GET['from']);
+    	redirect('chat');
+    }
 	public function index()
 	{	
 		if($this->session->userdata('walogin')==""){

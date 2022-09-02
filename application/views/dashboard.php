@@ -233,8 +233,8 @@
                                 <h3>Blast</h3>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=uncontacted"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncontacted</span></a>
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=document"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncompleted Document</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Uncontacted"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncontacted</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Document"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncompleted Document</span></a>
                                 <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Promo"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Penawaran Promo</span></a>
                             </li>
                             <li class="sub-category">
@@ -264,7 +264,6 @@
         </div>
       </div>
     </div>
-    <!-- CONTAINER CLOSED-->
   </div>
 </div>
 </div>
@@ -684,9 +683,7 @@
                     </div>
                 </div>
             </div>
-        </div>            <!--/SIDEBAR-RIGHT-->
-
-            <!-- COUNTRY-SELECTOR MODAL-->
+        </div>
             
 		<div class="modal fade" id="country-selector">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -768,9 +765,7 @@
                     </div>
                 </div>
             </div>
-        </div>            <!-- /COUNTRY-SELECTOR MODAL-->
-
-            <!-- FOOTER -->
+        </div>
             
 		<footer class="footer">
             <div class="container">
@@ -814,6 +809,7 @@
     </body>
 </html>
 <script>
+    var listuser=<?= json_encode($listuser); ?>;
     var socket = io("<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
     socket.on("connect_error", (err) => {
         console.log(`connect_error due to ${err.message}`);
@@ -822,8 +818,12 @@
     socket.on('connect', ()=>{
         toastr.success("Successfully connect",'Online');
     });
-    socket.on(<?= $data->nik; ?>+' - '+val.fromnumber,(msg)=>{
-        console.log('Pesan masuk :',msg)
-        incomingMsg(msg)
+    listuser.map((val)=>{
+        console.log(val);
+        socket.on(<?= $data->nik; ?>+' - '+val.fromnumber,(msg)=>{
+            console.log('Pesan masuk :',msg)
+            toastr.info("1 chat received",'Inbound message');
+        })
     })
+    
 </script>

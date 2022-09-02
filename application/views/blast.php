@@ -16,7 +16,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="assets/images/brand/favicon.ico" />
 
 		<!-- TITLE -->
-		<title>Sash – PHP Bootstrap 5 Admin & Dashboard Template</title>
+		<title>WA Dashboard</title>
 
 		<!-- BOOTSTRAP CSS -->
 		<link id="style" href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -36,7 +36,8 @@
 		<!-- INTERNAL SWITCHER CSS -->
 		<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
 		<link href="assets/switcher/demo.css" rel="stylesheet" />
-
+        <link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/toastr.css">
     </head>
 
     <body class="app sidebar-mini ltr light-mode">
@@ -232,8 +233,8 @@
                                 <h3>Blast</h3>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=uncontacted"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncontacted</span></a>
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=document"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncompleted Document</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Uncontacted"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncontacted</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Document"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Uncompleted Document</span></a>
                                 <a class="side-menu__item has-link" data-bs-toggle="slide" href="blast?status=Promo"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Penawaran Promo</span></a>
                             </li>
                             <li class="sub-category">
@@ -250,16 +251,77 @@
             </div>                <!--/APP-SIDEBAR-->
 
                 <div class="main-content app-content mt-0">
-  <div class="side-app">
-    <!-- CONTAINER -->
-    <div class="main-container container-fluid">
-      <div class="container">
-        <!-- ROW-1 OPEN-->
-        <div class="row" style="margin-top: 30px;">
-			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-4" >
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
-			</div>
+                  <div class="side-app">
+                    <!-- CONTAINER -->
+                    <div class="main-container container-fluid">
+                      <div class="container">
+                        <!-- ROW-1 OPEN-->
+                        <div class="row" style="margin-top: 30px;">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Insert <?= $_GET['status'] ?></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <textarea class="form-control mb-4" placeholder="Textarea" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12" >
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Data Blast <?= $_GET['status'] ?></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                          <table id="tblBlast" class="table border text-nowrap text-md-nowrap table-bordered mb-0">
+                                            <thead>
+                                              <tr>
+                                                <th>ID</th>
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Salary</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>1</td>
+                                                <td>Joan Powell</td>
+                                                <td>Associate Developer</td>
+                                                <td>$450,870</td>
+                                              </tr>
+                                              <tr>
+                                                <td>2</td>
+                                                <td>Gavin Gibson</td>
+                                                <td>Account manager</td>
+                                                <td>$230,540</td>
+                                              </tr>
+                                              <tr>
+                                                <td>3</td>
+                                                <td>Julian Kerr</td>
+                                                <td>Senior Javascript Developer</td>
+                                                <td>$55,300</td>
+                                              </tr>
+                                              <tr>
+                                                <td>4</td>
+                                                <td>Cedric Kelly</td>
+                                                <td>Accountant</td>
+                                                <td>$234,100</td>
+                                              </tr>
+                                              <tr>
+                                                <td>5</td>
+                                                <td>Samantha May</td>
+                                                <td>Junior Technical Author</td>
+                                                <td>$43,198</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                    </div>
+                                </div>
+		                    </div>
+                			<div class="col-sm-12 col-md-12 col-lg-12 col-xl-8">
+                			</div>
         </div>
       </div>
     </div>
@@ -767,9 +829,7 @@
                     </div>
                 </div>
             </div>
-        </div>            <!-- /COUNTRY-SELECTOR MODAL-->
-
-            <!-- FOOTER -->
+        </div>
             
 		<footer class="footer">
             <div class="container">
@@ -805,10 +865,34 @@
         <script src="assets/plugins/gallery/lg-zoom.js"></script>
         <script src="assets/plugins/gallery/lg-hash.js"></script>
         <script src="assets/plugins/gallery/lg-share.js"></script>
-        <script src="assets/js/chat.js"></script>
 		<script src="assets/js/themeColors.js"></script>
 		<script src="assets/js/custom.js"></script>
         <script src="assets/switcher/js/switcher.js"></script>
+        <script src="assets/js/datatables.min.js" type="text/javascript"></script>
+        <script src="assets/js/dataTables.altEditor.free.js" ></script>
+        <script src="assets/js/dataTables.cellEdit.js" ></script>
+        <script src="assets/socketio/socket.io.min.js" crossorigin="anonymous"></script>
+        <script src="assets/js/toastr.min.js"></script>
     </body>
 
 </html>
+<script>
+    var listuser=<?= json_encode($listuser); ?>;
+    var socket = io("<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
+    socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+        toastr.error("Fail to connect socketio, check your connection",'Offline');
+    });
+    socket.on('connect', ()=>{
+        toastr.success("Successfully connect",'Online');
+    });
+    listuser.map((val)=>{
+        console.log(val);
+        socket.on(<?= $data->nik; ?>+' - '+val.fromnumber,(msg)=>{
+            console.log('Pesan masuk :',msg)
+            toastr.info("1 chat received",'Inbound message');
+        })
+    });
+     $('#tblBlast').DataTable();
+
+</script>
