@@ -3,11 +3,10 @@
 application/cache/*
 
 application/logs/*
+application/config/*
 
 user_guide_src/
 /vendor/
-application/config/config.php
-application/config/database.php
 
 # IDE Files
 #-------------------------

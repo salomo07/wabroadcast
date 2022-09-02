@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 // $dotenv->load();
@@ -76,10 +76,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'wa',
+	'hostname' => getenv('HOSTDB'),
+	'username' => getenv('UDB'),
+	'password' => getenv('PDB'),
+	'database' => getenv('DB'),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
