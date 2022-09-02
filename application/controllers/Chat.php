@@ -60,7 +60,6 @@ class Chat extends CI_Controller {
 	
 	public function inboundmsg()
 	{
-		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
 		if(json_decode(file_get_contents('php://input'))==null){echo "Error";die();}
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
