@@ -11,7 +11,7 @@ class Chat extends CI_Controller {
         // }
         // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
 		// $dotenv->load();
-		$_ENV['BASEURL_SOCKETIO']='wadashboard.herokuapp.com';
+		$_ENV['BASEURL_SOCKETIO']='wasocket.herokuapp.com';
 		$_SERVER['userdata']=json_decode(base64_decode($this->session->userdata('walogin')));
 
     }
