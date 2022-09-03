@@ -38,7 +38,7 @@ class Chat extends CI_Controller {
 		}
 		echo $nik? json_encode($detail):json_encode(array());
 	}
-	public function saveOutboundMsgx()
+	public function saveOutboundMsg()
 	{	
 		$data=json_decode(file_get_contents('php://input'));
 		if(isset($data->from) && isset($data->nik) && isset($data->text)){
