@@ -309,7 +309,7 @@
                                             <div class="dropdown">
                                                 <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-horizontal"></i></a>
                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                    <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-trash-2 me-1"></i> Close Conversation</a>
+                                                    <a class="dropdown-item" href="chat/closing"><i class="fe fe-trash-2 me-1"></i> Close Conversation</a>
                                                 </div>
                                             </div>
                                         </nav>

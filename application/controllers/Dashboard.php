@@ -12,6 +12,7 @@ class Dashboard extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('dashboard',['data'=>json_decode(base64_decode($this->session->userdata('walogin')))]);
+        $listUser=$this->M_chat->getList($_SERVER['userdata']->nik);
+		$this->load->view('dashboard',['listuser'=>$listUser,'data'=>json_decode(base64_decode($this->session->userdata('walogin')))]);
 	}
 }

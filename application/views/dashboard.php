@@ -36,6 +36,7 @@
 		<!-- INTERNAL SWITCHER CSS -->
 		<link href="assets/switcher/css/switcher.css" rel="stylesheet" />
 		<link href="assets/switcher/demo.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="assets/css/toastr.css">
 
     </head>
 
@@ -808,6 +809,21 @@
 		<script src="assets/js/themeColors.js"></script>
 		<script src="assets/js/custom.js"></script>
         <script src="assets/switcher/js/switcher.js"></script>
+        <script src="assets/socketio/socket.io.min.js" crossorigin="anonymous"></script>
+        <script src="assets/js/toastr.min.js"></script>
     </body>
-
 </html>
+<script>
+    var socket = io("<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
+    socket.on("connect_error", (err) => {
+        console.log(`connect_error due to ${err.message}`);
+        toastr.error("Fail to connect socketio, check your connection",'Offline');
+    });
+    socket.on('connect', ()=>{
+        toastr.success("Successfully connect",'Online');
+    });
+    socket.on(<?= $data->nik; ?>+' - '+val.fromnumber,(msg)=>{
+        console.log('Pesan masuk :',msg)
+        incomingMsg(msg)
+    })
+</script>

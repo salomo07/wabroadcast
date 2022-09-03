@@ -50,7 +50,7 @@ class Chat extends CI_Controller {
 				'url'=>isset($_POST['url'])?$_POST['url']:'',
 				'status'=>'Conversation',
 				'statusio'=>'Out',
-				'time'=>date('Y-m-d H:i:s')
+				'time'=>date('Y-m-d H:i:s.u')
 			);
 			
 			$this->M_chat->insertMsg($listUser);
@@ -72,7 +72,7 @@ class Chat extends CI_Controller {
                 $url=$val->message->type=="IMAGE"?$val->message->url:'';
                 $name=isset($val->contact->name)?$val->contact->name:'';
             	$msgdata=array('msgid'=>$val->messageId,'from'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
-            	$insertdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
+            	$insertdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s.u'),'type'=>$val->message->type,'nik'=>'');
             	if(count($convers)==0)
             	{
             		$this->M_chat->insertMsg($insertdata);
