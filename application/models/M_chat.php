@@ -22,7 +22,7 @@ class M_chat extends CI_Model {
     }
     function pickbyAgent($data)
     {   
-        $xxx=(object)$data;
+        $xxx=(object)$data;;
         $this->db->where('fromnumber', $xxx->fromnumber);
         $this->db->update('tblmsg', $xxx);
     }
