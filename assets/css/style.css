@@ -20811,10 +20811,15 @@ list-style6 ul {
     display: block;
 }
 
-.media img {
+/*.media img {
     width: 40px;
     height: 40px;
-}
+
+}*/
+/*#imgDoc{
+    width: 400px;
+    height: 400px;
+}*/
 
 .media-right,
 .media>.pull-right {

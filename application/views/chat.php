@@ -25,7 +25,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/toastr.css">
     </head>
 
-    <body class="app sidebar-mini ltr light-mode">
+    <body class="app sidebar-mini ltr light-mode" oncontextmenu="return false;">
         <div id="global-loader">
             <img src="assets/images/loader.svg" class="loader-img" alt="Loader">
         </div>
@@ -818,22 +818,7 @@
             </div>
         </div>
     </div>
-    <div id="msgrightMedia" style="display: none;" class="media flex-row-reverse chat-right">
-      <div class="main-img-user online">
-        <img alt="avatar" src="assets/images/users/6.jpg">
-      </div>
-      <div class="media-body">
-        <div class="main-msg-wrapper" style="background-color: aliceblue;">
-          <img id="imgDoc" alt="avatar" class="w-10 h-50" src="../assets/images/media/3.jpg">
-        </div>
-        <div>
-          <span>9:48 am</span>
-          <a href="javascript:void(0)">
-            <i class="icon ion-android-more-horizontal"></i>
-          </a>
-        </div>
-      </div>
-    </div>
+    <img style="display: none;" id="imgDoc" alt="avatar" class="w-300 h-300" src="../assets/images/media/3.jpg">
 </html>
 
 <script type="text/javascript">
@@ -898,7 +883,6 @@
                     $('.main-chat-footer').show();
                     $('#ChatBody').find('.content-inner').html('');
                     res.map((val,i)=>{
-
                         if(val.statusio=='Out'){
                             $(msgLeft).find('.main-msg-wrapper').text(val.text);
                             $(msgLeft).find('.main-msg-wrapper').next().find('span').text(val.time);
@@ -906,8 +890,16 @@
                             xxx.push(msgLeft.clone());
                         }else if (val.statusio=='In'){
                             console.log("Data :",val);
-                            $(msgRight).find('.main-msg-wrapper').text(val.text);
-                            $(msgRight).find('.main-msg-wrapper').next().find('span').text(val.time);
+                            if(val.type!="TEXT"){
+                                $('#imgDoc').attr('src',val.url);
+                                $('#imgDoc').show();
+                                $(msgRight).find('.main-msg-wrapper').html($('#imgDoc').clone());
+                                $(msgRight).find('.media-body').append('<label>'+val.text+'</label>');
+                                $('#imgDoc').hide();
+                            }else{
+                                $(msgRight).find('.main-msg-wrapper').text(val.text);
+                                $(msgRight).find('.main-msg-wrapper').next().find('span').text(val.time);                                
+                            }
                             $(msgRight).removeAttr('id');
                             xxx.push(msgRight.clone());
                         }
@@ -947,11 +939,12 @@
         var msgHTML=$('#msgright').show();
         $(msgHTML).find('.main-msg-wrapper').text(msg.text);
         $(msgHTML).find('.media-body').find('span').text(msg.time);
-        if(msg.type!="TEXT"){
-            var msgHTML=$('#msgrightMedia').show();
-            $(msgHTML).find('.main-msg-wrapper').append('<label>'+msg.text+'</label>');
-            $(msgHTML).find('#imgDoc').attr('src',msg.url);
-            $(msgHTML).find('.media-body').find('span').text(msg.time);
+        if(val.type!="TEXT"){
+            $('#imgDoc').attr('src',val.url);
+            $('#imgDoc').show();
+            $(msgHTML).find('.main-msg-wrapper').html($('#imgDoc').clone());
+            $(msgHTML).find('.media-body').append('<label>'+msg.text+'</label>');
+            $('#imgDoc').hide();
         }
         $('.content-inner').append($(msgHTML).clone());
 
@@ -967,6 +960,7 @@
             {
                 $(exist).find('.media-body > p').text(msg.text)
                 $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
+                //Tambahkan kondisi gambar
             }
         }
     }

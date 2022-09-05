@@ -22,7 +22,7 @@ class M_chat extends CI_Model {
     }
     function getList($nik)
     {   
-        $query = $this->db->query("SELECT contactname, (select text from `tblmsg` where fromnumber=m.fromnumber order by time desc limit 1) as 'text',fromnumber,DATE_FORMAT(time, '%H:%i %d/%m/%Y') as 'time',(select count(msgid) from `tblmsg` where fromnumber=m.fromnumber and status <> 'Closed') as 'unread' FROM `tblmsg` m where status <>'Closed' GROUP by fromnumber");
+        $query = $this->db->query("SELECT contactname, (select text from `tblmsg` where fromnumber=m.fromnumber order by time desc limit 1) as 'text',fromnumber,DATE_FORMAT(time, '%H:%i %d/%m/%Y') as 'time',(select count(msgid) from `tblmsg` where fromnumber=m.fromnumber and nik='' and status <> 'Closed') as 'unread' FROM `tblmsg` m where status <>'Closed' GROUP by fromnumber");
         return $query->result();
     }
     function pickbyAgent($data)
