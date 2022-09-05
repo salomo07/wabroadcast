@@ -824,7 +824,7 @@
       </div>
       <div class="media-body">
         <div class="main-msg-wrapper" style="background-color: aliceblue;">
-          <img alt="avatar" class="w-10 h-50" src="../assets/images/media/3.jpg">
+          <img id="imgDoc" alt="avatar" class="w-10 h-50" src="../assets/images/media/3.jpg">
         </div>
         <div>
           <span>9:48 am</span>
@@ -966,6 +966,7 @@
                 
                 var msgrightMedia=$('#msgrightMedia').show();
                 $(msgrightMedia).find('.main-msg-wrapper').append('<label>'+msg.text+'</label>');
+                $(msgrightMedia).find('#imgDoc').attr()
             }
         }
     }
