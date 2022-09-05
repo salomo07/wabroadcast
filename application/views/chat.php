@@ -966,7 +966,7 @@
                 
                 var msgrightMedia=$('#msgrightMedia').show();
                 $(msgrightMedia).find('.main-msg-wrapper').append('<label>'+msg.text+'</label>');
-                $(msgrightMedia).find('#imgDoc').attr()
+                $(msgrightMedia).find('#imgDoc').attr('src',msg.url)
             }
         }
     }
