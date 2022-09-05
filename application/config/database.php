@@ -74,12 +74,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+// $db['default'] = array(
+// 	'dsn'	=> '',
+// 	'hostname' => getenv('HOSTDB'),
+// 	'username' => getenv('UDB'),
+// 	'password' => getenv('PDB'),
+// 	'database' => getenv('DB'),
+// 	'dbdriver' => 'mysqli',
+// 	'dbprefix' => '',
+// 	'pconnect' => FALSE,
+// 	'db_debug' => (ENVIRONMENT !== 'production'),
+// 	'cache_on' => FALSE,
+// 	'cachedir' => '',
+// 	'char_set' => 'utf8',
+// 	'dbcollat' => 'utf8_general_ci',
+// 	'swap_pre' => '',
+// 	'encrypt' => FALSE,
+// 	'compress' => FALSE,
+// 	'stricton' => FALSE,
+// 	'failover' => array(),
+// 	'save_queries' => TRUE
+// );
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => getenv('HOSTDB'),
-	'username' => getenv('UDB'),
-	'password' => getenv('PDB'),
-	'database' => getenv('DB'),
+	'hostname' => 'r98du2bxwqkq3shg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+	'username' => 'qcpgzek8xtb156kb',
+	'password' => 'jegx4dku84rqk3bk',
+	'database' => 'f7t1mi9n2o1r93uw',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -96,10 +117,9 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-
 // $db['default'] = array(
 // 	'dsn'	=> '',
-// 	'hostname' => '192.168.43.159',
+// 	'hostname' => 'localhost',
 // 	'username' => 'root',
 // 	'password' => 'xxx',
 // 	'database' => 'wa',
