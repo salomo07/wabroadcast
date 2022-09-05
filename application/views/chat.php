@@ -947,6 +947,12 @@
         var msgHTML=$('#msgright').show();
         $(msgHTML).find('.main-msg-wrapper').text(msg.text);
         $(msgHTML).find('.media-body').find('span').text(msg.time);
+        if(msg.type!="TEXT"){
+            var msgHTML=$('#msgrightMedia').show();
+            $(msgHTML).find('.main-msg-wrapper').append('<label>'+msg.text+'</label>');
+            $(msgHTML).find('#imgDoc').attr('src',msg.url);
+            $(msgHTML).find('.media-body').find('span').text(msg.time);
+        }
         $('.content-inner').append($(msgHTML).clone());
 
         var exist=$("div[value='" + msg.from + "']");
@@ -961,12 +967,6 @@
             {
                 $(exist).find('.media-body > p').text(msg.text)
                 $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
-            }
-            if(msg.type!="TEXT"){
-                
-                var msgrightMedia=$('#msgrightMedia').show();
-                $(msgrightMedia).find('.main-msg-wrapper').append('<label>'+msg.text+'</label>');
-                $(msgrightMedia).find('#imgDoc').attr('src',msg.url)
             }
         }
     }
