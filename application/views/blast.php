@@ -263,7 +263,10 @@
                                         <h3 class="card-title">Insert <?= $_GET['status'] ?></h3>
                                     </div>
                                     <div class="card-body">
-                                        <textarea class="form-control mb-4" placeholder="Textarea" rows="4"></textarea>
+                                        <form method="post" action="blast/<?php echo $_GET['status'] ?>">
+                                            <textarea class="form-control mb-4" placeholder="Masukkan data JSON disini ..." rows="5"></textarea>
+                                            <button type="button" class="btn btn-primary btn-md mb-3 pull-right">Save</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

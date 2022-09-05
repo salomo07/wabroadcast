@@ -818,6 +818,22 @@
             </div>
         </div>
     </div>
+    <div id="msgrightMedia" style="display: none;" class="media flex-row-reverse chat-right">
+      <div class="main-img-user online">
+        <img alt="avatar" src="assets/images/users/6.jpg">
+      </div>
+      <div class="media-body">
+        <div class="main-msg-wrapper" style="background-color: aliceblue;">
+          <img alt="avatar" class="w-10 h-50" src="../assets/images/media/3.jpg">
+        </div>
+        <div>
+          <span>9:48 am</span>
+          <a href="javascript:void(0)">
+            <i class="icon ion-android-more-horizontal"></i>
+          </a>
+        </div>
+      </div>
+    </div>
 </html>
 
 <script type="text/javascript">
@@ -934,15 +950,23 @@
         $('.content-inner').append($(msgHTML).clone());
 
         var exist=$("div[value='" + msg.from + "']");
-        console.log(exist)
+        console.log(exist);
         if($("div[value='" + msg.from + "']").length==1){
             if($('#notelp').val()!=msg.from)
             {
                 $(exist).find('.main-img-user>span').text(parseInt($(exist).find('.main-img-user>span').text())+1);
                 $(exist).find('.main-img-user > span').show();
             }
-            $(exist).find('.media-body > p').text(msg.text)
-            $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
+            if(msg.from==$('#notelp').val())
+            {
+                $(exist).find('.media-body > p').text(msg.text)
+                $(exist).find('.media-contact-name').find('span').eq(1).text(msg.time);console.log("sama : ",msg.from);
+            }
+            if(msg.type!="TEXT"){
+                
+                var msgrightMedia=$('#msgrightMedia').show();
+                $(msgrightMedia).find('.main-msg-wrapper').append('<label>'+msg.text+'</label>');
+            }
         }
     }
     

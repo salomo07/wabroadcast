@@ -71,6 +71,7 @@ class Chat extends CI_Controller {
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
+            	print_r($data);
             	$convers=$this->M_chat->checkNewConversation($val->from);
             	$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
                 $url=$val->message->type=="IMAGE"?$val->message->url:'';
