@@ -13,7 +13,6 @@ class Chat extends CI_Controller {
 		$_ENV['UINFOBIP']=getenv('UINFOBIP');
 		$_ENV['PINFOBIP']=getenv('PINFOBIP');
 		$_ENV['SENDER']=getenv('SENDER');
-		print_r($_ENV['SENDER']);
 		// getenv('PINFOBIP')
 		$_ENV['BASEURL_SOCKETIO']='wasocket.herokuapp.com';
     }
