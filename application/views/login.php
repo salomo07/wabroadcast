@@ -70,7 +70,7 @@
                                     <div class="tabs-menu1">
                                         <!-- Tabs -->
                                         <ul class="nav panel-tabs">
-                                            <li class="mx-0"><a href="login.html#tab5" class="active" data-bs-toggle="tab">Email</a></li>
+                                            <li class="mx-0"><a href="login.html#tab5" class="active" data-bs-toggle="tab">Username</a></li>
                                         </ul>
                                     </div>
                                 </div>

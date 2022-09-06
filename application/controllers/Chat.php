@@ -9,11 +9,14 @@ class Chat extends CI_Controller {
         // if($this->session->userdata('walogin')==""){
         //     redirect('auth/login');
         // }
-        // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'../../..');
-		// $dotenv->load();
+		// $_ENV['UINFOBIP']='Telecenter_WA';
+		// $_ENV['PINFOBIP']='@Dira2021danny';
+		// $_ENV['SENDER']='6281119308391';
+		$_ENV['UINFOBIP']=getenv('UINFOBIP');
+		$_ENV['PINFOBIP']=getenv('PINFOBIP');
+		$_ENV['SENDER']=getenv('SENDER');
+		// getenv('PINFOBIP')
 		$_ENV['BASEURL_SOCKETIO']='wasocket.herokuapp.com';
-		
-
     }
     public function closing(){
     	$this->M_chat->closeCoversation($_GET['from']);
@@ -77,7 +80,7 @@ class Chat extends CI_Controller {
                 $url=$val->message->type=="IMAGE"?$val->message->url:'';
                 $name=isset($val->contact->name)?$val->contact->name:'';
             	$msgdata=array('msgid'=>$val->messageId,'from'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
-            	$insertdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s.u'),'type'=>$val->message->type,'nik'=>'');
+            	$insertdata=array('msgid'=>$val->messageId,'fromnumber'=>$val->from,'url'=>$url,'text'=>$txt,'contactname'=>$name,'status'=>'Conversation','statusio'=>'In','time'=>date('Y-m-d H:i:s'),'type'=>$val->message->type,'nik'=>'');
             	if(count($convers)==0)
             	{
             		$this->M_chat->insertMsg($insertdata);
@@ -93,7 +96,6 @@ class Chat extends CI_Controller {
 	}
 	public function sendtosocketInbound($data){
 		$curl = curl_init();
-		// echo $_ENV['BASEURL_SOCKETIO'].'/inboundmsg';
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => $_ENV['BASEURL_SOCKETIO'].'/inboundmsg',
 			CURLOPT_RETURNTRANSFER => true,
@@ -141,7 +143,7 @@ class Chat extends CI_Controller {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		    CURLOPT_URL => getenv('BASEURL').'/whatsapp/1/message/text',
+		    CURLOPT_URL => 'api.infobip.com/whatsapp/1/message/text',
 		    CURLOPT_RETURNTRANSFER => true,
 		    CURLOPT_ENCODING => '',
 		    CURLOPT_MAXREDIRS => 10,
@@ -149,9 +151,9 @@ class Chat extends CI_Controller {
 		    CURLOPT_FOLLOWLOCATION => true,
 		    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		    CURLOPT_CUSTOMREQUEST => 'POST',
-		    CURLOPT_POSTFIELDS =>'{"from":"'.getenv('SENDER').'","to":"'.$from.'","messageId":"'.$id.'","content":{"text":"'.$text.'"}}',
+		    CURLOPT_POSTFIELDS =>'{"from":"'.$_ENV['SENDER'].'","to":"'.$from.'","messageId":"'.$id.'","content":{"text":"'.$text.'"}}',
 		    CURLOPT_HTTPHEADER => array(
-		        'Authorization: Basic '.base64_encode(getenv('UINFOBIP').':'.getenv('PINFOBIP')),
+		        'Authorization: Basic '.base64_encode($_ENV['UINFOBIP'].':'.$_ENV['PINFOBIP']),
 		        'Content-Type: application/json',
 		        'Accept: application/json'
 		    ),
