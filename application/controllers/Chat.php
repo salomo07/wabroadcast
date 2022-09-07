@@ -57,7 +57,7 @@ class Chat extends CI_Controller {
 				'url'=>isset($_POST['url'])?$_POST['url']:'',
 				'status'=>'Conversation',
 				'statusio'=>'Out',
-				'time'=>date('Y-m-d H:i:s.u')
+				'time'=>date('Y-m-d H:i:s')
 			);
 			
 			$this->M_chat->insertMsg($listUser);
@@ -74,7 +74,6 @@ class Chat extends CI_Controller {
         else{
             $data=json_decode(file_get_contents('php://input'))->results;
             foreach ($data as $val) {
-            	print_r($data);
             	$convers=$this->M_chat->checkNewConversation($val->from);
             	$txt=$val->message->type=="IMAGE"?$val->message->caption:$val->message->text;
                 $url=$val->message->type=="IMAGE"?$val->message->url:'';
@@ -84,12 +83,12 @@ class Chat extends CI_Controller {
             	if(count($convers)==0)
             	{
             		$this->M_chat->insertMsg($insertdata);
-            		$this->sendtosocketBroadcast(json_encode($msgdata));echo 'sendtosocketBroadcast';
+            		$this->sendtosocketBroadcast(json_encode($msgdata));
             	}
             	else{
             		$this->M_chat->insertMsg($insertdata);
             		$msgdata['namaevent']=$convers[0]->nik.' - '.$val->from;
-    				$this->sendtosocketInbound(json_encode($msgdata));echo 'sendtosocketInbound';
+    				$this->sendtosocketInbound(json_encode($msgdata));
             	}
             }
         }

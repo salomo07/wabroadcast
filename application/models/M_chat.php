@@ -7,7 +7,7 @@ class M_chat extends CI_Model {
 
     function getConversation($from)
     {   
-        $query = $this->db->query("select msgid,fromnumber,nik,type,contextid,text,url,contactname,status,statusio, DATE_FORMAT(time, '%H:%i %d/%m/%Y') as 'time' from tblmsg where fromnumber='$from' and status <> 'Closed' order by time asc");
+        $query = $this->db->query("select msgid,fromnumber,nik,type,contextid,text,url,contactname,status,statusio, DATE_FORMAT(time, '%H:%i:%s %d/%m/%Y') as 'time' from tblmsg where fromnumber='$from' and status <> 'Closed' order by time asc");
         return $query->result();
     }
     function checkNewConversation($from)

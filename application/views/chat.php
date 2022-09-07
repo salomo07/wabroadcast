@@ -233,7 +233,7 @@
                     <div class="row" style="margin-top: 30px;">
                         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4" >
                             <div class="card overflow-hidden" >
-                                <div class="main-content-app pt-0 main-chat-2" style="height:500px;">
+                                <div class="main-content-app pt-0 main-chat-2">
                                     <div class="main-content-left main-content-left-chat">
                                         <div class="card-body d-flex">
                                             <div class="main-img-user online"><img alt="avatar" src="assets/images/users/21.jpg"></div>
@@ -241,7 +241,7 @@
                                                 <h6>Adira Whatsapp</h6>
                                                 <span class="dot-label bg-success"></span><small class="me-3">Available</small>
                                             </div>
-                                            <nav class="nav ms-auto">
+                                            <!-- <nav class="nav ms-auto">
                                                 <div class="dropdown">
                                                     <a class="nav-link text-muted fs-20" href="javascript:void(0)" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-horizontal"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-end">
@@ -252,7 +252,7 @@
                                                         <a class="dropdown-item" href="javascript:void(0)"><i class="fe fe-trash-2 me-1"></i> Delete</a>
                                                     </div>
                                                 </div>
-                                            </nav>
+                                            </nav> -->
                                         </div>
 
                                         <!-- main-chat-header -->
@@ -267,23 +267,76 @@
                                         </div>
                                         <div class="tab-content main-chat-list flex-2 ">
                                             <div class="tab-pane active" id="ChatList">
-                                                <div id="chatList" class="main-chat-list tab-pane">
-                                                    <div class="media new" value="6281288643757">
+                                                <div class="tab-content main-chat-list flex-2 ">
+                                                <div class="tab-pane active" id="ChatList">
+                                                    <div id="chatList" class="main-chat-list tab-pane">
+                                                      <div class="media new" href="javascript:void(0)">
                                                         <div class="main-img-user">
-                                                            <img alt="" src="assets/images/users/6.jpg"> <span>3</span>
+                                                          <img alt="" src="assets/images/users/6.jpg">
+                                                          <span>1</span>
                                                         </div>
                                                         <div class="media-body">
-                                                            <div class="media-contact-name">
-                                                                <span>Ariana Monino</span> <span>30 min</span>
+                                                          <div class="media-contact-name">
+                                                            <span>........</span>
+                                                            <span>...</span>
+                                                          </div>
+                                                          <p> ------------- </p>
+                                                        </div>
+                                                    </div>
+                                                        <div class="media new" href="javascript:void(0)">
+                                                            <div class="main-img-user online">
+                                                              <img alt="" src="">
                                                             </div>
-                                                            <p>Good Morning</p>
+                                                            <div class="media-body">
+                                                              <div class="media-contact-name">
+                                                                <span>........</span>
+                                                                <span>...</span>
+                                                              </div>
+                                                              <p> ------------- </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="media new" href="javascript:void(0)">
+                                                            <div class="main-img-user online">
+                                                              <img alt="" src="">
+                                                            </div>
+                                                            <div class="media-body">
+                                                              <div class="media-contact-name">
+                                                                <span>........</span>
+                                                                <span>...</span>
+                                                              </div>
+                                                              <p> ------------- </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="media new" href="javascript:void(0)">
+                                                            <div class="main-img-user online">
+                                                              <img alt="" src="">
+                                                            </div>
+                                                            <div class="media-body">
+                                                              <div class="media-contact-name">
+                                                                <span>........</span>
+                                                                <span>...</span>
+                                                              </div>
+                                                              <p> ------------- </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="media new" href="javascript:void(0)">
+                                                            <div class="main-img-user online">
+                                                              <img alt="" src="">
+                                                            </div>
+                                                            <div class="media-body">
+                                                              <div class="media-contact-name">
+                                                                <span>........</span>
+                                                                <span>...</span>
+                                                              </div>
+                                                              <p> ------------- </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- main-chat-list -->
+                                            </div>
+                                                
                                             </div>
                                         </div>
-                                        <!-- main-chat-list -->
                                     </div>
                                 </div>
                             </div>
@@ -782,7 +835,6 @@
         <script src="assets/plugins/gallery/lg-zoom.js"></script>
         <script src="assets/plugins/gallery/lg-hash.js"></script>
         <script src="assets/plugins/gallery/lg-share.js"></script>
-        <script src="assets/js/chat.js"></script>
         <script src="assets/js/themeColors.js"></script>
         <script src="assets/js/custom.js"></script>
         <script src="assets/switcher/js/switcher.js"></script>
@@ -818,10 +870,18 @@
             </div>
         </div>
     </div>
-    <img style="display: none;" id="imgDoc" alt="avatar" class="w-300 h-300" src="../assets/images/media/3.jpg">
+    <img style="display: none;" id="imgDoc" alt="avatar" class="w-300 h-300" src="">
 </html>
 
 <script type="text/javascript">
+    const ps5 = new PerfectScrollbar('#ChatBody', {
+        useBothWheelAxes: true,
+        suppressScrollX: true,
+    });
+    const ps18 = new PerfectScrollbar('.main-chat-2', {
+        useBothWheelAxes: true,
+        suppressScrollX: true,
+    });
     var socket = io("<?php echo $_ENV['BASEURL_SOCKETIO'] ?>");
     socket.on("connect_error", (err) => {
         console.log(`connect_error due to ${err.message}`);
@@ -891,10 +951,11 @@
                         }else if (val.statusio=='In'){
                             console.log("Data :",val);
                             if(val.type!="TEXT"){
-                                $('#imgDoc').attr('src',val.url);
+                                // $('#imgDoc').attr('src',val.url);
+                                getImg($('#imgDoc'),val.url);
                                 $('#imgDoc').show();
                                 $(msgRight).find('.main-msg-wrapper').html($('#imgDoc').clone());
-                                $(msgRight).find('.media-body').append('<label>'+val.text+'</label>');
+                                $(msgRight).find('.main-msg-wrapper').append("<p>"+val.text+"</p>");
                                 $('#imgDoc').hide();
                             }else{
                                 $(msgRight).find('.main-msg-wrapper').text(val.text);
@@ -908,6 +969,22 @@
                 }
             }
         });
+    }
+    var getImg=(ele,url)=>{
+        console.log("gambar",url)
+        $.ajax({
+            url: url,
+            method: "GET",
+            dataType:"image/jpeg",
+            headers: {
+                "Authorization": "<?php echo "Basic ".base64_encode($_ENV['UINFOBIP'].":".$_ENV['PINFOBIP']) ?>"
+            },
+            success: function(res){
+                $(ele).attr('src',res);
+                console.log("gambar")
+            }
+        });
+        
     }
     const usrx=$('#chatList').find('.media.new').eq(0);
     var initChatlist=()=>{
@@ -936,11 +1013,12 @@
         $('.main-content-body').hide();
     }
     var incomingMsg=(msg)=>{
+        toastr.info("New message !!!","Info");
         var msgHTML=$('#msgright').show();
         $(msgHTML).find('.main-msg-wrapper').text(msg.text);
         $(msgHTML).find('.media-body').find('span').text(msg.time);
-        if(val.type!="TEXT"){
-            $('#imgDoc').attr('src',val.url);
+        if(msg.type!="TEXT"){
+            $('#imgDoc').attr('src',msg.url);
             $('#imgDoc').show();
             $(msgHTML).find('.main-msg-wrapper').html($('#imgDoc').clone());
             $(msgHTML).find('.media-body').append('<label>'+msg.text+'</label>');
@@ -989,6 +1067,7 @@
                     addList(msg,0);
                 }
             }
+            toastr.info("New message !!!","Info");
         })
     }
     var addList=(msg,count)=>{
@@ -1007,4 +1086,6 @@
     }
     initChatlist();
     receivingBroadcast();
+
+    
 </script>
