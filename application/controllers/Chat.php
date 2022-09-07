@@ -9,12 +9,10 @@ class Chat extends CI_Controller {
         // if($this->session->userdata('walogin')==""){
         //     redirect('auth/login');
         // }
-		$_ENV['UINFOBIP']='Telecenter_WA';
-		$_ENV['PINFOBIP']='@Dira2021danny';
-		$_ENV['SENDER']='6281119308391';
-		// $_ENV['UINFOBIP']=getenv('UINFOBIP');
-		// $_ENV['PINFOBIP']=getenv('PINFOBIP');
-		// $_ENV['SENDER']=getenv('SENDER');
+		
+		$_ENV['UINFOBIP']=getenv('UINFOBIP');
+		$_ENV['PINFOBIP']=getenv('PINFOBIP');
+		$_ENV['SENDER']=getenv('SENDER');
 		// getenv('PINFOBIP')
 		$_ENV['BASEURL_SOCKETIO']='wasocket.herokuapp.com';
     }
