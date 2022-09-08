@@ -11,6 +11,7 @@ class Chat extends CI_Controller {
         // }
 		
 		$_ENV['UINFOBIP']=getenv('UINFOBIP');
+		echo $_ENV['UINFOBIP'];
 		$_ENV['PINFOBIP']=getenv('PINFOBIP');
 		$_ENV['SENDER']=getenv('SENDER');
 		// getenv('PINFOBIP')
