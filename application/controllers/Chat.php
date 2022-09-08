@@ -11,7 +11,7 @@ class Chat extends CI_Controller {
         // }
 		
 		$_ENV['UINFOBIP']=getenv('UINFOBIP');
-		echo $_ENV['UINFOBIP'];
+		echo base64_encode($_ENV['UINFOBIP'].":".$_ENV['PINFOBIP']);
 		$_ENV['PINFOBIP']=getenv('PINFOBIP');
 		$_ENV['SENDER']=getenv('SENDER');
 		// getenv('PINFOBIP')
@@ -151,7 +151,7 @@ class Chat extends CI_Controller {
 		    CURLOPT_CUSTOMREQUEST => 'POST',
 		    CURLOPT_POSTFIELDS =>'{"from":"'.$_ENV['SENDER'].'","to":"'.$from.'","messageId":"'.$id.'","content":{"text":"'.$text.'"}}',
 		    CURLOPT_HTTPHEADER => array(
-		        'Authorization: Basic '.base64_encode($_ENV['UINFOBIP'].':'.$_ENV['PINFOBIP']),
+		        'Authorization: Basic '.base64_encode($_ENV['UINFOBIP'].":".$_ENV['PINFOBIP']),
 		        'Content-Type: application/json',
 		        'Accept: application/json'
 		    ),
