@@ -13,10 +13,10 @@ class Chat extends CI_Controller {
 		$_ENV['UINFOBIP']=getenv('UINFOBIP');
 		
 		$_ENV['PINFOBIP']=getenv('PINFOBIP');
-		echo base64_encode($_ENV['UINFOBIP'].":".$_ENV['PINFOBIP']);
+		// echo base64_encode($_ENV['UINFOBIP'].":".$_ENV['PINFOBIP']);
 		$_ENV['SENDER']='6281119308391';
 		// getenv('PINFOBIP')
-		echo $_ENV['SENDER'].$_ENV['UINFOBIP'].$_ENV['PINFOBIP'];
+		// echo $_ENV['SENDER'].$_ENV['UINFOBIP'].$_ENV['PINFOBIP'];
 		$_ENV['BASEURL_SOCKETIO']='wasocket.herokuapp.com';
     }
     public function closing(){
@@ -153,7 +153,7 @@ class Chat extends CI_Controller {
 		    CURLOPT_CUSTOMREQUEST => 'POST',
 		    CURLOPT_POSTFIELDS =>'{"from":"'.$_ENV['SENDER'].'","to":"'.$from.'","messageId":"'.$id.'","content":{"text":"'.$text.'"}}',
 		    CURLOPT_HTTPHEADER => array(
-		        'Authorization: Basic VGVsZWNlbnRlcl9XQTpARGlyYTIwMjFkYW5ueQ==',
+		        'Authorization: Basic '.base64_encode($_ENV['UINFOBIP'].":".$_ENV['PINFOBIP']),
 		        'Content-Type: application/json',
 		        'Accept: application/json'
 		    ),
