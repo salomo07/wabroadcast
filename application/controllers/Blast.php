@@ -49,15 +49,28 @@ class Blast extends CI_Controller {
         if($dataIn->type=='Promo'){
             $this->M_blast->insertBlast($dataIn);
             $this->sendBlastPromo($dataIn->no,$dataIn->id,$dataIn->name,$dataIn->channel);
+            $text=str_replace("{{1}}",$dataIn->name,$_GET['promo']);
+            $text=str_replace("{{2}}",$dataIn->channel,$text);
+
+            $this->sendToChat($dataIn->nik,$dataIn->no,$text);
             echo json_encode($dataIn);
         }elseif($dataIn->type=='Document'){
             $this->M_blast->insertBlast($dataIn);
             $this->sendBlastDokumen($dataIn->no,$dataIn->id,$dataIn->name,$dataIn->channel,$dataIn->dokumen);
+            $text=str_replace("{{1}}",$dataIn->name,$_GET['document']);
+            $text=str_replace("{{2}}",$dataIn->channel,$text);
+            $text=str_replace("{{3}}",$dataIn->dokumen,$text);
+
+            $this->sendToChat($dataIn->nik,$dataIn->no,$text);
             echo json_encode($dataIn);
         }
         else{
             $this->M_blast->insertBlast($dataIn);
             $this->sendBlastUncontacted($dataIn->no,$dataIn->id,$dataIn->name,$dataIn->channel);
+            $text=str_replace("{{1}}",$dataIn->name,$_GET['uncontacted']);
+            $text=str_replace("{{2}}",$dataIn->channel,$text);
+
+            $this->sendToChat($dataIn->nik,$dataIn->no,$text);
             echo json_encode($dataIn);
         }
 	}
@@ -211,5 +224,32 @@ class Blast extends CI_Controller {
         ));
 
         $response = curl_exec($curl);
+    }
+    public function sendToChat($nik,$from,$text){
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'http://wadashboard.herokuapp.com/chat/saveOutboundMsg',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "nik":"'.$nik.'",
+            "text":"'.$text.'",
+            "from":"'.$from.'"
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Cookie: ci_session=rj6t70o9al7f25a954lfd517k9mkvgd7'
+          ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
     }
 }
