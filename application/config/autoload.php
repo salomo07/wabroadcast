@@ -6,4 +6,4 @@ $autoload['drivers'] = array();
 $autoload['helper'] = array('url','file','form','cookie');
 $autoload['config'] = array();
 $autoload['language'] = array();
-$autoload['model'] = array('M_auth','M_chat');
+$autoload['model'] = array('M_auth','M_chat','M_blast');

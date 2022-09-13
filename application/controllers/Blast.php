@@ -61,12 +61,12 @@ class Blast extends CI_Controller {
             echo json_encode($dataIn);
         }
 	}
-    public function getblast(){
+    public function getBlast(){
         $userdata=json_decode(base64_decode($this->session->userdata('walogin')));
         $listBlastUnclosed=$this->M_blast->getBlastUnclosed($userdata->nik,$_GET['status'],$_GET['search']['value'],$_GET['start'],$_GET['length'],$_GET['draw']);
         echo $listBlastUnclosed;
     }
-    //6281288643757
+
     public function sendBlastPromo($to,$id,$name,$channel){
         $curl = curl_init();
 
