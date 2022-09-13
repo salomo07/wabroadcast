@@ -984,7 +984,6 @@
                 console.log("gambar")
             }
         });
-        
     }
     const usrx=$('#chatList').find('.media.new').eq(0);
     var initChatlist=()=>{
